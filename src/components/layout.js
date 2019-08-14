@@ -8,9 +8,26 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import styled from "@emotion/styled"
 
 import Header from "./header"
-import "./layout.css"
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-areas:
+    ". h h h h h h h h ."
+    ". . b b b b b b . ."
+    ". f f f f f f f f .";
+`
+
+const Body = styled.div`
+  grid-area: b;
+`
+
+const Footer = styled.main`
+  grid-area: f;
+`
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -24,24 +41,15 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <Container>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
+      <Body>{children}</Body>
+      <Footer>
+        © {new Date().getFullYear()}, Built with
+        {` `}
+        <a href="https://www.gatsbyjs.org">Gatsby</a>
+      </Footer>
+    </Container>
   )
 }
 
