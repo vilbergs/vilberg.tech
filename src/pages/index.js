@@ -1,9 +1,6 @@
 import React from "react"
 import Layout from "../components/layout"
 import Date from "../components/date"
-import Image from "../components/image"
-import Post from "../components/post"
-import SEO from "../components/seo"
 import styled from "@emotion/styled"
 
 const Body = styled.div`
@@ -17,10 +14,7 @@ const Body = styled.div`
 const IndexPage = () => (
   <Layout>
     <Date />
-    <Body>
-      <Image />
-      <Post />
-    </Body>
+    <Body></Body>
   </Layout>
 )
 
