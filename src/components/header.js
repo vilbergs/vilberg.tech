@@ -1,13 +1,16 @@
-import PropTypes from "prop-types"
-import React from "react"
+import PropTypes from 'prop-types'
+import React from 'react'
+import Date from './date'
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      gridArea: "h",
-      height: "15vh",
+      gridArea: 'h',
+      height: '20vh',
     }}
-  ></header>
+  >
+    <Date />
+  </header>
 )
 
 Header.propTypes = {
