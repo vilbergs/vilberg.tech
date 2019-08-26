@@ -7,9 +7,16 @@ import Heading from '../components/heading'
 
 const PostContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'i'
+    'p';
   grid-column-gap: 10px;
-  grid-template-areas: 'i p';
+
+  @media (min-width: 70em) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 'i p';
+  }
 `
 
 const Image = styled.div`
