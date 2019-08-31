@@ -9,6 +9,7 @@ const PostContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
+    '.'
     'i'
     'p';
   grid-column-gap: 10px;
@@ -34,11 +35,11 @@ export default function Template({ data }) {
   return (
     <Layout>
       <PostContainer>
+        <Heading>{post.frontmatter.title}</Heading>
         <Image>
           <Img fluid={featuredImage} />
         </Image>
         <Post>
-          <Heading>{post.frontmatter.title}</Heading>
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </Post>
       </PostContainer>

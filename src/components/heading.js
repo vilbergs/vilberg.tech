@@ -5,7 +5,7 @@ import 'typeface-fugaz-one'
 const StyledHeading = styled.h1`
   font-family: Fugaz One;
   font-size: '112sp';
-  color: #ff3900;
+  color: #212121;
   margin-top: 0;
 
   font-size: 2em;

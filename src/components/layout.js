@@ -7,7 +7,7 @@ import 'typeface-roboto'
 
 const Container = styled.div`
   font-family: Roboto;
-  background-color: #eeeeee;
+  background: #fff;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: [row1-start] 30% [row1-start] auto;

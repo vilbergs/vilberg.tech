@@ -1,8 +1,8 @@
-const path = require("path")
+const path = require('path')
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage } = boundActionCreators
-  const postTemplate = path.resolve("src/templates/post.js")
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage } = actions
+  const postTemplate = path.resolve('src/templates/post.js')
 
   return graphql(`
     {
