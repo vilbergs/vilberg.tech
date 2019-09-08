@@ -1,52 +1,63 @@
 import React from 'react'
-import styled from '@emotion/styled'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import Heading from '../components/heading'
+import { withSize } from 'react-sizeme'
 
-const PostContainer = styled.div`
+const postContainer = css`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
     '.'
     'i'
     'p';
-  grid-column-gap: 10px;
 
   @media (min-width: 70em) {
+    grid-column-gap: 10px;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 'i p';
+    grid-template-areas:
+      '. .'
+      'i p';
   }
 `
 
-const Image = styled.div`
+const image = css`
   grid-area: i;
 `
 
-const Post = styled.div`
+const content = css`
   grid-area: p;
+  padding: 10px;
 `
 
-export default function Template({ data }) {
+const Template = ({ data, size }) => {
   const { markdownRemark: post } = data
   const featuredImage = post.frontmatter.featuredImage.childImageSharp.fluid
+  const mobileImage = post.frontmatter.mobileImage.childImageSharp.fluid
 
+  console.log(mobileImage)
+  console.log(post)
   return (
     <Layout>
-      <PostContainer>
+      <div css={postContainer}>
         <Heading>{post.frontmatter.title}</Heading>
-        <Image>
-          <Img fluid={featuredImage} />
-        </Image>
-        <Post>
-          <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        </Post>
-      </PostContainer>
+        <Img
+          css={image}
+          fluid={size.width < 1100 ? mobileImage : featuredImage}
+        />
+        <content
+          css={content}
+          dangerouslySetInnerHTML={{ __html: post.html }}
+        />
+      </div>
     </Layout>
   )
 }
 
+export default withSize()(Template)
 export const postQuery = graphql`
   query BlogPostByPath($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
@@ -55,6 +66,13 @@ export const postQuery = graphql`
         path
         title
         featuredImage {
+          childImageSharp {
+            fluid(maxWidth: 1080) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        mobileImage {
           childImageSharp {
             fluid(maxWidth: 1080) {
               ...GatsbyImageSharpFluid

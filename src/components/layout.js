@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import 'normalize.css'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import Header from './header'
@@ -9,11 +9,10 @@ const Container = styled.div`
   font-family: Roboto;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: [row1-start] 30% [row1-start] auto;
   grid-template-areas:
-    '. h h h h h h h h .'
-    '. b b b b b b b b .'
-    '. f f f f f f f f .';
+    'h h h h h h h h h h'
+    'b b b b b b b b b b'
+    'f f f f f f f f f f';
 
   body {
     font-size: 100%;
@@ -152,10 +151,6 @@ const Layout = ({ children }) => {
       <Footer></Footer>
     </Container>
   )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout

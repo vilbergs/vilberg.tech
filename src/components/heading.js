@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import 'typeface-fugaz-one'
+import 'typeface-poppins'
 
 const StyledHeading = styled.h1`
-  font-family: Fugaz One;
+  font-family: Poppins;
   font-size: '112sp';
   color: #212121;
   margin-top: 0;

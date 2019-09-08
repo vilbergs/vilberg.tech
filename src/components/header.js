@@ -6,6 +6,7 @@ const Header = ({ siteTitle }) => (
     style={{
       gridArea: 'h',
       height: '20vh',
+      backgroundColor: 'peru',
     }}
   ></header>
 )
