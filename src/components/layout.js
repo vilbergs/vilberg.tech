@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import 'normalize.css'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from '@emotion/styled'
@@ -145,11 +146,17 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <Container>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <Body>{children}</Body>
-      <Footer></Footer>
-    </Container>
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home</title>
+      </Helmet>
+      <Container>
+        <Header siteTitle={data.site.siteMetadata.title} />
+        <Body>{children}</Body>
+        <Footer></Footer>
+      </Container>
+    </>
   )
 }
 

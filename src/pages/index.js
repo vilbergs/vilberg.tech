@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
+import { Helmet } from 'react-helmet'
 import { Link } from 'gatsby'
 import 'typeface-bungee-shade'
 import 'typeface-share-tech-mono'
@@ -73,6 +74,10 @@ const navigation = css`
 
 const IndexPage = () => (
   <div css={container}>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>Home</title>
+    </Helmet>
     <h1 css={landingHeading}>Vilberg </h1>
     <nav css={navigation}>
       <ul>
