@@ -24,8 +24,10 @@
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
     "react-sizeme": "^2.6.7",
+    "typeface-bungee-shade": "0.0.71",
     "typeface-poppins": "0.0.72",
-    "typeface-roboto": "0.0.75"
+    "typeface-roboto": "0.0.75",
+    "typeface-share-tech-mono": "0.0.72"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
