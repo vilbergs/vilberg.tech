@@ -48,7 +48,7 @@ const navigation = css`
       color: #ff3900;
       flex-grow: 1;
       font-size: 1.9em;
-      font-weight: 700;
+      font-weight: 500;
       text-align: center;
       margin: 0.25em 0;
       padding: 0 0.4em;
