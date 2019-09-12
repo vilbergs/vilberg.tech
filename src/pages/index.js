@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import { Link } from 'gatsby'
 import 'typeface-bungee-shade'
 import 'typeface-share-tech-mono'
+import Menu from '../components/Menu'
 
 const background = '#ff3900'
 const text = 'rgb(0,0,0,0.87)'
@@ -83,19 +84,7 @@ const IndexPage = () => (
       <title>Home</title>
     </Helmet>
     <h1 css={landingHeading}>Vilberg </h1>
-    <nav css={navigation}>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/blog">Blog</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
-    </nav>
+    <Menu css={navigation} />
   </div>
 )
 

@@ -15,6 +15,10 @@ const Container = styled.div`
     'b b b b b b b b b b'
     'f f f f f f f f f f';
 
+  @media (prefers-color-scheme: dark) {
+    background-color: #292929;
+    color: rgba(255, 255, 255, 0.97);
+  }
   body {
     font-size: 100%;
   }
