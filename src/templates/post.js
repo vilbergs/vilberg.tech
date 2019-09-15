@@ -33,12 +33,11 @@ const content = css`
 `
 
 const Template = ({ data, size }) => {
+  console.log(data)
   const { markdownRemark: post } = data
   const featuredImage = post.frontmatter.featuredImage.childImageSharp.fluid
   const mobileImage = post.frontmatter.mobileImage.childImageSharp.fluid
 
-  console.log(mobileImage)
-  console.log(post)
   return (
     <Layout>
       <div css={postContainer}>

@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import { Helmet } from 'react-helmet'
-import { Link } from 'gatsby'
 import 'typeface-bungee-shade'
 import 'typeface-share-tech-mono'
 import Menu from '../components/Menu'
