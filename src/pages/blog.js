@@ -33,8 +33,8 @@ export default Blog
 export const recentPostsQuery = graphql`
   query RecentBlogPosts {
     allMarkdownRemark(
-      limit: 10
-      sort: { order: DESC, fields: frontmatter___date }
+      limit: 5
+      sort: { order: ASC, fields: frontmatter___date }
     ) {
       edges {
         node {
