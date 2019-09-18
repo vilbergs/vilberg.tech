@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import { Link } from 'gatsby'
+import 'typeface-share-tech-mono'
 
 const text = 'rgba(0,0,0,0.87)'
 

@@ -137,7 +137,7 @@ const container = css`
 
 const body = css`
   grid-area: b;
-  border: 1px solid red;
+  padding: 15px 15px 90px 15px;
 `
 
 const mobileMenu = css`

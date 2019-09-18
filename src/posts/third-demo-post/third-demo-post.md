@@ -1,9 +1,9 @@
 ---
-path: '/my-second-post'
-title: 'My Second Post!'
-date: '2019-09-15'
-featuredImage: './second.jpg'
-mobileImage: './second_mobile.jpg'
+path: '/third-demo-post'
+title: 'Third Demo Post'
+date: '2019-09-18'
+featuredImage: './pancakes.jpg'
+mobileImage: './pancakes_mobile.jpg'
 ---
 
 Magna consectetur ut elit ut do commodo eiusmod reprehenderit exercitation sit. Adipisicing mollit ipsum do deserunt duis nulla. Eu cillum minim reprehenderit sit reprehenderit pariatur nisi ut irure labore dolor deserunt sit.

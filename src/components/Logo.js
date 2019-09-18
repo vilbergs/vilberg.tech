@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
+import 'typeface-bungee-shade'
 
 const logo = size => css`
   font-family: Bungee Shade;

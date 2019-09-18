@@ -19,16 +19,16 @@ const header = css`
     padding: 0 100px;
   }
 `
-const logo = css``
+
 const navigation = css`
   ul li {
-    padding: 3px 20px;
+    padding: 0 20px;
   }
 `
 
 const Header = () => (
   <header css={header}>
-    <Logo css={logo} size={1.3} />
+    <Logo size={1.3} />
     <Menu css={navigation} />
   </header>
 )
