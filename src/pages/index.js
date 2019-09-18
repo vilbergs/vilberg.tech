@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import 'typeface-bungee-shade'
 import 'typeface-share-tech-mono'
 import Menu from '../components/Menu'
+import Logo from '../components/Logo'
 
 const background = '#ff3900'
 const text = 'rgb(0,0,0,0.87)'
@@ -82,7 +83,7 @@ const IndexPage = () => (
       <meta charSet="utf-8" />
       <title>Home</title>
     </Helmet>
-    <h1 css={landingHeading}>Vilberg </h1>
+    <Logo size={3.5} css={landingHeading} />
     <Menu css={navigation} />
   </div>
 )

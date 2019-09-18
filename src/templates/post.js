@@ -2,8 +2,8 @@
 import { css, jsx } from '@emotion/core'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
-import Layout from '../components/layout'
-import Heading from '../components/heading'
+import Layout from '../components/Layout'
+import Heading from '../components/Heading'
 import { withSize } from 'react-sizeme'
 
 const postContainer = css`

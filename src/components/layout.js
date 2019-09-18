@@ -1,19 +1,28 @@
-import React from 'react'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import { Helmet } from 'react-helmet'
 import 'normalize.css'
 import { useStaticQuery, graphql } from 'gatsby'
-import styled from '@emotion/styled'
-import Header from './header'
+import Header from './Header'
+import Menu from './Menu'
 import 'typeface-roboto'
 
-const Container = styled.div`
+const background = '#ff3900'
+const text = 'rgba(0,0,0,0.87)'
+
+const container = css`
   font-family: Roboto;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: 100px repeat(8, 1fr) 100px;
   grid-template-areas:
     'h h h h h h h h h h'
-    'b b b b b b b b b b'
-    'f f f f f f f f f f';
+    'b b b b b b b b b b';
+
+  @media (min-width: 43.75em) {
+    grid-template-areas:
+      'h h h h h h h h h h'
+      '. b b b b b b b b .';
+  }
 
   body {
     font-size: 100%;
@@ -126,12 +135,24 @@ const Container = styled.div`
   }
 `
 
-const Body = styled.div`
+const body = css`
   grid-area: b;
+  border: 1px solid red;
 `
 
-const Footer = styled.main`
-  grid-area: f;
+const mobileMenu = css`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  background-color: ${background};
+  padding: 10px 0;
+
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+  @media (min-width: 43.75em) {
+    display: none;
+  }
 `
 
 const Layout = ({ children }) => {
@@ -146,17 +167,17 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <div>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Home</title>
       </Helmet>
-      <Container>
+      <main css={container}>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <Body>{children}</Body>
-        <Footer></Footer>
-      </Container>
-    </>
+        <content css={body}>{children}</content>
+      </main>
+      <Menu css={mobileMenu} />
+    </div>
   )
 }
 
