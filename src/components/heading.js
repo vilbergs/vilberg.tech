@@ -1,12 +1,12 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import 'typeface-poppins'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
+import 'typeface-scope-one'
 
-const StyledHeading = styled.h1`
-  font-family: Poppins;
-  font-size: '112sp';
+const heading = css`
+  font-family: 'Scope One';
   color: #212121;
-  margin-top: 0;
+  margin: 0;
+  font-weight: 400;
 
   font-size: 2em;
   /* 2x body copy size = 32px */
@@ -27,6 +27,10 @@ const StyledHeading = styled.h1`
   }
 `
 
-const Heading = ({ children }) => <StyledHeading>{children}</StyledHeading>
+const Heading = props => (
+  <h1 css={heading} {...props}>
+    {props.children}
+  </h1>
+)
 
 export default Heading

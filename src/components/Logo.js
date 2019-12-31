@@ -1,28 +1,22 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import 'typeface-bungee-shade'
-
-const logo = size => css`
-  font-family: Bungee Shade;
-  font-size: ${size}em;
-  color: rgb(0, 0, 0, 0.87);
-  margin: 0;
-
-  user-select: none;
-
-  @media (min-width: 43.75em) {
-    font-size: ${size * 2}em;
-    /* 2.5x body copy size = 40px */
-    line-height: 1.125;
-  }
-`
+import { useStaticQuery, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 const Logo = props => {
-  return (
-    <h1 css={logo(props.size)} {...props}>
-      Vilberg
-    </h1>
-  )
+  const data = useStaticQuery(graphql`
+    query {
+      logo: file(relativePath: { eq: "signature.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 500) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
+
+  return <Img fluid={data.logo.childImageSharp.fluid} {...props} />
 }
 
 export default Logo

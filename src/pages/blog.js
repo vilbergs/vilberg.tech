@@ -15,12 +15,10 @@ const blogListItem = css`
 const Blog = ({ data }) => {
   const posts = data.allMarkdownRemark.edges.map(({ node }) => node)
 
-  console.log(posts)
-
   return (
     <Layout>
       <SEO title="Blog" />
-      <Heading>Blog</Heading>
+      <Heading>Recent posts</Heading>
       {posts.map(({ frontmatter, id, html }, index) => (
         <Card key={id} css={blogListItem}>
           {index === 0 && (

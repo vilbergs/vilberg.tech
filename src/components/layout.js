@@ -5,25 +5,13 @@ import 'normalize.css'
 import { useStaticQuery, graphql } from 'gatsby'
 import Header from './Header'
 import Menu from './Menu'
+import Background from '../components/Background'
 import 'typeface-roboto'
+import 'typeface-scope-one'
 
 const background = '#ff3900'
-const text = 'rgba(0,0,0,0.87)'
 
-const container = css`
-  font-family: Roboto;
-  display: grid;
-  grid-template-columns: 100px repeat(8, 1fr) 100px;
-  grid-template-areas:
-    'h h h h h h h h h h'
-    'b b b b b b b b b b';
-
-  @media (min-width: 43.75em) {
-    grid-template-areas:
-      'h h h h h h h h h h'
-      '. b b b b b b b b .';
-  }
-
+export const typography = css`
   body {
     font-size: 100%;
   }
@@ -45,6 +33,16 @@ const container = css`
   h5,
   h6 {
     font-size-adjust: 0.5;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-family: Roboto;
+    -webkit-font-smoothing: antialiased;
   }
 
   font-size: 1em;
@@ -55,7 +53,7 @@ const container = css`
   @media (min-width: 43.75em) {
     font-size: 1em;
     /* equivalent to 16px */
-    line-height: 1.375;
+    line-height: 1.5;
     /* equivalent to 22px */
   }
 
@@ -87,6 +85,7 @@ const container = css`
     /* 1.375x body copy size = 22px */
     line-height: 1.13636364;
     /* 25px / 22px */
+    font-weight: 400;
   }
 
   @media (min-width: 43.75em) {
@@ -135,6 +134,21 @@ const container = css`
   }
 `
 
+const container = ({ background }) => css`
+  font-family: Roboto;
+  display: grid;
+  grid-template-columns: 100px repeat(8, 1fr) 100px;
+  grid-template-areas:
+    'h h h h h h h h h h'
+    'b b b b b b b b b b';
+
+  @media (min-width: 43.75em) {
+    grid-template-areas:
+      'h h h h h h h h h h'
+      '. b b b b b b b b .';
+  }
+`
+
 const body = css`
   grid-area: b;
   padding: 15px 15px 90px 15px;
@@ -163,21 +177,28 @@ const Layout = ({ children }) => {
           title
         }
       }
+      desktop: file(relativePath: { eq: "bg.jpg" }) {
+        childImageSharp {
+          fluid {
+            src
+          }
+        }
+      }
     }
   `)
 
   return (
-    <div>
+    <Background>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Home</title>
       </Helmet>
-      <main css={container}>
+      <main css={[container, typography]}>
         <Header siteTitle={data.site.siteMetadata.title} />
         <content css={body}>{children}</content>
       </main>
       <Menu css={mobileMenu} />
-    </div>
+    </Background>
   )
 }
 
