@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import Img from 'gatsby-image'
-import Background from '../components/Background'
+import { Link } from 'gatsby'
+import Background from './Background'
+import SubHeading from './SubHeading'
 
 const text = 'rgba(0,0,0,0.87)'
 
@@ -11,6 +12,7 @@ const card = css`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s ease-in-out;
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding-top: 56.25%;
 
   a {
     color: ${text};
@@ -46,7 +48,14 @@ const cardImage = css`
 
 const cardContent = css`
   padding: 15px;
+
+  h2 {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+  }
 `
+
 const cardActions = css`
   padding: 0 15px 15px 15px;
 
@@ -57,22 +66,15 @@ const cardActions = css`
 
 const Card = props => {
   return (
-    <div css={card} {...props}>
-      {props.image ? <Img css={cardImage} fluid={props.image} /> : null}
-      <section css={cardContent}>
-        <h3 css={{ color: '#212121', marginBottom: 10, marginTop: 0 }}>
-          Vilberg
-        </h3>
-        <p>
-          Ea et velit do commodo laboris anim sunt. Laborum aliqua aliqua
-          commodo anim dolore irure velit ad aute quis voluptate voluptate
-          nostrud...
-        </p>
-      </section>
-      <section css={cardActions}>
-        <p>Read More</p>
-      </section>
-    </div>
+    <Link css={{ textDecoration: 'none' }} {...props}>
+      <Background css={card} fluid={props.image}>
+        <section css={cardContent}>
+          <SubHeading css={{ marginBottom: 10, marginTop: 0 }}>
+            {props.children}
+          </SubHeading>
+        </section>
+      </Background>
+    </Link>
   )
 }
 

@@ -24,8 +24,6 @@ const Background = props => (
       }
     `}
     render={data => {
-      const imageData = data.desktop.childImageSharp.fluid
-
       return (
         <BackgroundImage
           Tag="div"

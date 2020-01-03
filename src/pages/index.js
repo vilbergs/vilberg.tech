@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, Link } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import { typography } from '../components/layout'
 import Background from '../components/Background'
@@ -8,8 +8,7 @@ import Heading from '../components/Heading'
 import SplitScreen from '../components/SplitScreen'
 import Card from '../components/Card'
 import SubHeading from '../components/SubHeading'
-
-const text = 'rgb(0,0,0,0.87)'
+import { Facebook, Instagram, Twitter } from '../components/Social'
 
 const container = css`
   display: grid;
@@ -31,11 +30,7 @@ const hero = css`
     height: 30vh;
   }
 `
-const logo = css`
-  grid-column: 2;
-  grid-row: 1;
-  padding: 50px;
-`
+
 const splitscreen = css`
   grid-column: 2 / 12;
   grid-row: 1 / 3;
@@ -110,6 +105,17 @@ const bio = css`
     padding: 0 30px;
   }
 `
+const social = css`
+  grid-column: 6 / 12;
+  z-index: 15;
+  padding: 30px;
+
+  @media (max-width: 43.75em) {
+    grid-column: 1 / -1;
+    grid-row: 6;
+    padding: 0 30px;
+  }
+`
 
 const recentPostsHeading = css`
   grid-column: 3 / 7;
@@ -168,6 +174,7 @@ const navigation = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  align-content: center;
   height: 100px;
   ul {
     margin: 0;
@@ -176,7 +183,7 @@ const navigation = css`
 
     li {
       display: inline;
-      padding: 0 20px;
+      padding: 0 15px;
       font-family: Scope One;
       color: rgb(0, 0, 0, 0.87);
       font-size: 1.6em;
@@ -226,9 +233,32 @@ const IndexPage = () => {
           }
         }
       }
+      recentPosts: allMarkdownRemark(
+        limit: 3
+        sort: { order: ASC, fields: frontmatter___date }
+      ) {
+        edges {
+          node {
+            frontmatter {
+              path
+              title
+              featuredImage {
+                childImageSharp {
+                  fluid(maxWidth: 1080) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   `)
 
+  const [firstPost, secondPost, thirdPost] = data.recentPosts.edges
+
+  console.log(thirdPost.node.frontmatter)
   return (
     <div css={[container, typography]}>
       <Helmet>
@@ -245,8 +275,13 @@ const IndexPage = () => {
           V
         </SubHeading>
         <ul>
-          <li>Blog</li>
-          <li>Portfolio</li>
+          <li>
+            <Link to="/blog">Blog</Link>
+          </li>
+          <li>
+            {' '}
+            <Link to="/portfolio">Portfolio</Link>
+          </li>
         </ul>
         <SubHeading
           css={css`
@@ -272,10 +307,35 @@ const IndexPage = () => {
           anim nulla.
         </p>
       </div>
+
+      <div css={social}>
+        <Facebook />
+        <Instagram />
+        <Twitter />
+      </div>
+
       <Heading css={recentPostsHeading}>Recent posts</Heading>
-      <Card css={newestPost} image={data.bg.childImageSharp.fluid}></Card>
-      <Card css={firstRecentPost} image={data.bg.childImageSharp.fluid}></Card>
-      <Card css={secondRecentPost} image={data.bg.childImageSharp.fluid}></Card>
+      <Card
+        to={firstPost.node.frontmatter.path}
+        css={newestPost}
+        image={firstPost.node.frontmatter.featuredImage.childImageSharp.fluid}
+      >
+        {firstPost.node.frontmatter.title}
+      </Card>
+      <Card
+        to={secondPost.node.frontmatter.path}
+        css={firstRecentPost}
+        image={secondPost.node.frontmatter.featuredImage.childImageSharp.fluid}
+      >
+        {secondPost.node.frontmatter.title}
+      </Card>
+      <Card
+        to={thirdPost.node.frontmatter.path}
+        css={secondRecentPost}
+        image={thirdPost.node.frontmatter.featuredImage.childImageSharp.fluid}
+      >
+        {thirdPost.node.frontmatter.title}
+      </Card>
       <div
         css={css`
           grid-column: 1 / -1;
