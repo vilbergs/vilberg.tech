@@ -1,17 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import { Helmet } from 'react-helmet'
 import 'normalize.css'
-import { useStaticQuery, graphql } from 'gatsby'
-import Header from './Header'
-import Menu from './Menu'
-import Background from '../components/Background'
+import { Link } from 'gatsby'
 import 'typeface-roboto'
 import 'typeface-scope-one'
+import SubHeading from '../components/SubHeading'
+import { LinkedIn, Instagram } from '../components/Social'
 
-const background = '#ff3900'
-
-export const typography = css`
+const typography = css`
   body {
     font-size: 100%;
   }
@@ -40,20 +36,22 @@ export const typography = css`
   h4,
   h5,
   h6,
-  p {
+  p,
+  a {
     font-family: Roboto;
     -webkit-font-smoothing: antialiased;
   }
 
   font-size: 1em;
   /* equivalent to 16px */
-  line-height: 1.25;
-  /* equivalent to 20px */
+  line-height: 112.5%;
 
   @media (min-width: 43.75em) {
-    font-size: 1em;
+    font-size: 112.5%;
+
     /* equivalent to 16px */
     line-height: 1.5;
+
     /* equivalent to 22px */
   }
 
@@ -134,72 +132,113 @@ export const typography = css`
   }
 `
 
-const container = ({ background }) => css`
-  font-family: Roboto;
+const container = css`
   display: grid;
-  grid-template-columns: 100px repeat(8, 1fr) 100px;
-  grid-template-areas:
-    'h h h h h h h h h h'
-    'b b b b b b b b b b';
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto 100px 350px auto 1fr 100px;
 
-  @media (min-width: 43.75em) {
-    grid-template-areas:
-      'h h h h h h h h h h'
-      '. b b b b b b b b .';
+  @media (max-width: 43.75em) {
+    grid-template-rows: auto 100px 100px 150px auto 1fr auto auto auto 50px;
   }
 `
 
-const body = css`
-  grid-area: b;
-  padding: 15px 15px 90px 15px;
-`
+const navigation = css`
+  grid-column: 3 / 11;
+  grid-row: 1;
+  z-index: 16;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 0 30px;
+  height: 100px;
 
-const mobileMenu = css`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  overflow: hidden;
-  background-color: ${background};
-  padding: 10px 0;
+  ul {
+    margin: 0;
+    padding: 0;
+    padding-left: 100px;
+    list-style-type: none;
 
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+    li {
+      display: inline;
+      padding: 0 15px;
+      color: rgb(0, 0, 0, 0.87);
+      font-size: 1.5em;
+      font-weight: 500;
+      text-align: center;
 
-  @media (min-width: 43.75em) {
-    display: none;
-  }
-`
-
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
+      @media (min-width: 43.75em) {
       }
-      desktop: file(relativePath: { eq: "bg.jpg" }) {
-        childImageSharp {
-          fluid {
-            src
-          }
-        }
+
+      &:first-of-type {
+        border-left: none;
       }
     }
-  `)
+  }
 
-  return (
-    <Background>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Home</title>
-      </Helmet>
-      <main css={[container, typography]}>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <content css={body}>{children}</content>
-      </main>
-      <Menu css={mobileMenu} />
-    </Background>
-  )
-}
+  h2,
+  a {
+    font-family: Scope One;
+    color: inherit;
+  }
+`
+
+const footer = css`
+  grid-column: 3 / 11;
+  grid-row: -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+  padding: 50px 0;
+  margin-top: -15px;
+  p {
+    font-family: Scope One;
+  }
+
+  @media (max-width: 43.75em) {
+    grid-row: 12;
+  }
+`
+
+const Layout = ({ children }) => (
+  <div css={[container, typography]}>
+    <div css={navigation}>
+      <SubHeading
+        css={css`
+          margin: 0;
+        `}
+      >
+        <Link to="/">V</Link>
+      </SubHeading>
+      <ul>
+        <li>
+          <Link to="/blog">Blog</Link>
+        </li>
+        <li>
+          <Link to="/portfolio">Portfolio</Link>
+        </li>
+      </ul>
+      <div>
+        <LinkedIn
+          css={css`
+            a {
+              margin: 0;
+            }
+          `}
+        />
+        <Instagram />
+      </div>
+    </div>
+    {children}
+    <footer css={footer}>
+      <p>Vilberg Eliasson</p>
+      <p>ALL RIGHTS RESERVED</p>
+    </footer>
+  </div>
+)
 
 export default Layout

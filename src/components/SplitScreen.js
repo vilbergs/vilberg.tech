@@ -3,8 +3,6 @@ import { css, jsx } from '@emotion/core'
 import 'typeface-scope-one'
 import 'typeface-roboto'
 import Background from '../components/Background'
-import Heading from './Heading'
-import SubHeading from './SubHeading'
 
 const screen = css`
   font-family: 'Scope One';

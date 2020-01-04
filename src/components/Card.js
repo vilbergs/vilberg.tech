@@ -42,10 +42,6 @@ const card = css`
   }
 `
 
-const cardImage = css`
-  border-radius: 15px 15px 0 0;
-`
-
 const cardContent = css`
   padding: 15px;
 
@@ -53,14 +49,6 @@ const cardContent = css`
     color: #ffffff;
     font-weight: 700;
     text-decoration: none;
-  }
-`
-
-const cardActions = css`
-  padding: 0 15px 15px 15px;
-
-  p {
-    margin: 0;
   }
 `
 

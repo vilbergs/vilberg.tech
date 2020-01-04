@@ -1,26 +1,14 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import { typography } from '../components/layout'
+import Layout from '../components/Layout'
 import Background from '../components/Background'
 import Heading from '../components/Heading'
 import SplitScreen from '../components/SplitScreen'
 import Card from '../components/Card'
 import SubHeading from '../components/SubHeading'
-import { Facebook, Instagram, Twitter } from '../components/Social'
 
-const container = css`
-  display: grid;
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto 100px 350px auto 1fr 50px 50px 100px;
-
-  @media (max-width: 43.75em) {
-    grid-template-rows: auto 100px 100px 150px auto 1fr auto auto auto auto 50px;
-  }
-`
 const hero = css`
   grid-column: 1 / -1;
   grid-row: 1;
@@ -97,18 +85,12 @@ const headshot = css`
 const bio = css`
   grid-column: 6 / 12;
   z-index: 15;
-  padding: 30px;
+  padding: 50px 30px;
 
-  @media (max-width: 43.75em) {
-    grid-column: 1 / -1;
-    grid-row: 6;
-    padding: 0 30px;
+  p {
+    line-height: 1.7;
+    font-size: 112, 5%;
   }
-`
-const social = css`
-  grid-column: 6 / 12;
-  z-index: 15;
-  padding: 30px;
 
   @media (max-width: 43.75em) {
     grid-column: 1 / -1;
@@ -156,51 +138,14 @@ const secondRecentPost = css`
     grid-row: 10;
   }
 `
-const footer = css`
-  grid-column: 1 / -1;
-  grid-row: 8;
-  padding: 50px 0;
-  margin-top: -15px;
-  background-color: #575757;
 
-  @media (max-width: 43.75em) {
-    grid-row: 12;
-  }
-`
-const navigation = css`
-  grid-column: 3 / 11;
-  grid-row: 1;
-  z-index: 16;
+const nopostsfallback = css`
+  grid-column: 6 / 12;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  align-content: center;
-  height: 100px;
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-
-    li {
-      display: inline;
-      padding: 0 15px;
-      font-family: Scope One;
-      color: rgb(0, 0, 0, 0.87);
-      font-size: 1.6em;
-      font-weight: 500;
-      text-align: center;
-
-      @media (min-width: 43.75em) {
-      }
-
-      &:first-of-type {
-        border-left: none;
-      }
-
-      a {
-        color: inherit;
-      }
-    }
+  @media (max-width: 43.75em) {
+    display: none;
   }
 `
 
@@ -258,39 +203,13 @@ const IndexPage = () => {
 
   const [firstPost, secondPost, thirdPost] = data.recentPosts.edges
 
-  console.log(thirdPost.node.frontmatter)
   return (
-    <div css={[container, typography]}>
+    <Layout>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Home</title>
       </Helmet>
       <Background css={hero} fluid={data.clouds.childImageSharp.fluid} />
-      <div css={navigation}>
-        <SubHeading
-          css={css`
-            margin: 0;
-          `}
-        >
-          V
-        </SubHeading>
-        <ul>
-          <li>
-            <Link to="/blog">Blog</Link>
-          </li>
-          <li>
-            {' '}
-            <Link to="/portfolio">Portfolio</Link>
-          </li>
-        </ul>
-        <SubHeading
-          css={css`
-            margin: 0;
-          `}
-        >
-          S
-        </SubHeading>
-      </div>
       <SplitScreen css={splitscreen} fluid={data.bg.childImageSharp.fluid}>
         <Heading>Vilberg</Heading>
         <SubHeading>Developer / Photographer</SubHeading>
@@ -298,20 +217,20 @@ const IndexPage = () => {
       <SplitScreen css={headshot} fluid={data.headshot.childImageSharp.fluid} />
       <div css={bio}>
         <p>
-          Non esse labore laboris reprehenderit fugiat nulla officia magna
-          dolore esse nulla do. Labore aliqua consequat duis velit cillum minim
-          ullamco sunt id. Labore non pariatur esse anim quis nulla laboris
-          consequat eu esse nulla. Esse irure duis ea nostrud. Esse labore nulla
-          excepteur adipisicing ad irure nostrud ad proident laboris nisi.
-          Aliqua officia consectetur laboris ipsum exercitation aliqua proident
-          anim nulla.
+          Welcome to my site, a platform where I showcase photos from my
+          adventures and share my thoughts on the various subjects that cross my
+          mind.
         </p>
-      </div>
-
-      <div css={social}>
-        <Facebook />
-        <Instagram />
-        <Twitter />
+        <p>
+          I am born and raised in Iceland but currently live in Sweden where I
+          work fulltime as a developer. I've always wanted a space where I can
+          reflect on and solidify my half-baked ideas about everything from tech
+          to philosophy.
+        </p>
+        <p>
+          May you find joy in flicking through my pics, blog posts or whatever
+          else that might end up here.
+        </p>
       </div>
 
       <Heading css={recentPostsHeading}>Recent posts</Heading>
@@ -322,36 +241,29 @@ const IndexPage = () => {
       >
         {firstPost.node.frontmatter.title}
       </Card>
-      <Card
-        to={secondPost.node.frontmatter.path}
-        css={firstRecentPost}
-        image={secondPost.node.frontmatter.featuredImage.childImageSharp.fluid}
-      >
-        {secondPost.node.frontmatter.title}
-      </Card>
-      <Card
-        to={thirdPost.node.frontmatter.path}
-        css={secondRecentPost}
-        image={thirdPost.node.frontmatter.featuredImage.childImageSharp.fluid}
-      >
-        {thirdPost.node.frontmatter.title}
-      </Card>
-      <div
-        css={css`
-          grid-column: 1 / -1;
-          grid-row: 7;
-          z-index: 10;
-          background-color: #ffffff;
-          box-shadow: 0 49px 28px rgba(0, 0, 0, 0.3),
-            0 35px 22px rgba(0, 0, 0, 0.22);
-
-          @media (max-width: 43.75em) {
-            grid-row: 11;
+      {secondPost ? (
+        <Card
+          to={secondPost.node.frontmatter.path}
+          css={firstRecentPost}
+          image={
+            secondPost.node.frontmatter.featuredImage.childImageSharp.fluid
           }
-        `}
-      ></div>
-      <footer css={footer}></footer>
-    </div>
+        >
+          {secondPost.node.frontmatter.title}
+        </Card>
+      ) : null}
+      {thirdPost ? (
+        <Card
+          to={thirdPost.node.frontmatter.path}
+          css={secondRecentPost}
+          image={thirdPost.node.frontmatter.featuredImage.childImageSharp.fluid}
+        >
+          {thirdPost.node.frontmatter.title}
+        </Card>
+      ) : (
+        <p css={nopostsfallback}> More posts coming soon!</p>
+      )}
+    </Layout>
   )
 }
 

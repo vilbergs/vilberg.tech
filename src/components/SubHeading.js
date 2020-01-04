@@ -1,9 +1,9 @@
-import React from 'react'
-import styled from '@emotion/styled'
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import 'typeface-scope-one'
 
-const StyledHeading = styled.h2`
-  font-family: 'Scope One';
+const subHeading = css`
+  font-family: Scope One;
   color: #212121;
   margin-top: 0;
   font-weight: 400;
@@ -12,6 +12,10 @@ const StyledHeading = styled.h2`
   /* 1.625x body copy size = 26px */
   line-height: 1.15384615;
   /* 30px / 26px */
+
+  a {
+    color: #212121;
+  }
 
   @media (min-width: 43.75em) {
     font-size: 2em;
@@ -27,7 +31,9 @@ const StyledHeading = styled.h2`
 `
 
 const SubHeading = props => (
-  <StyledHeading {...props}>{props.children}</StyledHeading>
+  <h2 {...props} css={subHeading}>
+    {props.children}
+  </h2>
 )
 
 export default SubHeading

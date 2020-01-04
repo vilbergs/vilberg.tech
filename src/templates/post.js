@@ -1,55 +1,46 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Heading from '../components/Heading'
 import { withSize } from 'react-sizeme'
+import SplitScreen from '../components/SplitScreen'
 
-const postContainer = css`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    '.'
-    'i'
-    'p';
+const splitscreen = css`
+  grid-column: 4 / 10;
+  grid-row: 1 / 3;
+  z-index: 10;
+  padding-top: 66.66%;
+  margin-top: 100px;
 
-  @media (min-width: 70em) {
-    grid-column-gap: 10px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas:
-      '. .'
-      'i p';
+  @media (max-width: 43.75em) {
+    grid-column: 2 / 12;
   }
 `
 
-const image = css`
-  grid-area: i;
-`
+const postContainer = css`
+  margin-top: 50px;
+  grid-column: 4 / 10;
 
-const content = css`
-  grid-area: p;
-  padding: 10px;
+  @media (max-width: 43.75em) {
+    grid-column: 2 / 12;
+  }
 `
 
 const Template = ({ data, size }) => {
-  console.log(data)
   const { markdownRemark: post } = data
   const featuredImage = post.frontmatter.featuredImage.childImageSharp.fluid
-  const mobileImage = post.frontmatter.mobileImage.childImageSharp.fluid
 
   return (
-    <Layout>
+    <Layout
+      css={css`
+        grid-template-rows: auto;
+      `}
+    >
+      <SplitScreen css={splitscreen} fluid={featuredImage} />
       <div css={postContainer}>
         <Heading>{post.frontmatter.title}</Heading>
-        <Img
-          css={image}
-          fluid={size.width < 1100 ? mobileImage : featuredImage}
-        />
-        <content
-          css={content}
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
+        <content dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
     </Layout>
   )
@@ -64,13 +55,6 @@ export const postQuery = graphql`
         path
         title
         featuredImage {
-          childImageSharp {
-            fluid(maxWidth: 1080) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        mobileImage {
           childImageSharp {
             fluid(maxWidth: 1080) {
               ...GatsbyImageSharpFluid
