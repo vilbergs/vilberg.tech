@@ -197,6 +197,9 @@ const footer = css`
   padding: 50px 0;
   margin-top: -15px;
 
+  a {
+    color: inherit;
+  }
   @media (max-width: 43.75em) {
     grid-row: 12;
   }
