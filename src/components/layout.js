@@ -36,8 +36,7 @@ const typography = css`
   h4,
   h5,
   h6,
-  p,
-  a {
+  p {
     font-family: Roboto;
     -webkit-font-smoothing: antialiased;
   }
@@ -132,15 +131,20 @@ const typography = css`
   }
 `
 
-const container = css`
+const container = (
+  options = {
+    gridTemplateRows: 'auto 1fr auto',
+    mobileGridTemplateRows: 'auto 1fr auto',
+  }
+) => css`
   display: grid;
   grid-column-gap: 15px;
   grid-row-gap: 15px;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto 100px 350px auto 1fr 100px;
+  grid-template-rows: ${options.gridTemplateRows};
 
   @media (max-width: 43.75em) {
-    grid-template-rows: auto 100px 100px 150px auto 1fr auto auto auto 50px;
+    grid-template-rows: ${options.mobileGridTemplateRows};
   }
 `
 
@@ -154,6 +158,10 @@ const navigation = css`
   align-content: center;
   padding: 0 30px;
   height: 100px;
+
+  h2 {
+    margin: 0;
+  }
 
   ul {
     margin: 0;
@@ -175,13 +183,12 @@ const navigation = css`
       &:first-of-type {
         border-left: none;
       }
-    }
-  }
 
-  h2,
-  a {
-    font-family: Scope One;
-    color: inherit;
+      a {
+        font-family: Scope One;
+        color: inherit;
+      }
+    }
   }
 `
 
@@ -205,14 +212,10 @@ const footer = css`
   }
 `
 
-const Layout = ({ children }) => (
-  <div css={[container, typography]}>
-    <div css={navigation}>
-      <SubHeading
-        css={css`
-          margin: 0;
-        `}
-      >
+const Layout = ({ containerOptions, children }) => (
+  <div css={[container(containerOptions), typography]}>
+    <div css={[typography, navigation]}>
+      <SubHeading>
         <Link to="/">V</Link>
       </SubHeading>
       <ul>

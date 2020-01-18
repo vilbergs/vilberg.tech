@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import { Link } from 'gatsby'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Heading from '../components/Heading'
 import SEO from '../components/Seo'
 import Card from '../components/Card'
+import Link from '../components/Link'
 
 const body = css`
   grid-column: 4 / 10;
@@ -28,15 +28,14 @@ const postExcerpt = css`
 
 const Blog = ({ data }) => {
   const posts = data.allMarkdownRemark.edges.map(({ node }) => node)
-  console.log(posts)
+
   return (
     <Layout>
       <SEO title="Blog" />
       <main css={body}>
-        {posts.map(({ frontmatter, id, excerpt }, index) => (
-          <div css={blogListItem}>
+        {posts.map(({ frontmatter, id, excerpt }) => (
+          <div key={id} css={blogListItem}>
             <Card
-              key={id}
               image={frontmatter.featuredImage.childImageSharp.fluid}
               to={frontmatter.path}
             ></Card>

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import { Link } from 'gatsby'
+import Link from './Link'
 import Background from './Background'
 import SubHeading from './SubHeading'
 

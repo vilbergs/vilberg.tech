@@ -204,7 +204,13 @@ const IndexPage = () => {
   const [firstPost, secondPost, thirdPost] = data.recentPosts.edges
 
   return (
-    <Layout>
+    <Layout
+      containerOptions={{
+        gridTemplateRows: 'auto 100px 350px auto 1fr 100px',
+        mobileGridTemplateRows:
+          'auto 100px 100px 150px auto 1fr auto auto auto 50px',
+      }}
+    >
       <Helmet>
         <meta charSet="utf-8" />
         <title>Home</title>
@@ -251,8 +257,10 @@ const IndexPage = () => {
         >
           {secondPost.node.frontmatter.title}
         </Card>
-      ) : null}
-      {thirdPost ? (
+      ) : (
+        <p css={nopostsfallback}> More posts coming soon!</p>
+      )}
+      {thirdPost && (
         <Card
           to={thirdPost.node.frontmatter.path}
           css={secondRecentPost}
@@ -260,8 +268,6 @@ const IndexPage = () => {
         >
           {thirdPost.node.frontmatter.title}
         </Card>
-      ) : (
-        <p css={nopostsfallback}> More posts coming soon!</p>
       )}
     </Layout>
   )
