@@ -4,7 +4,7 @@ import 'typeface-scope-one'
 
 const subHeading = css`
   font-family: Scope One;
-  color: #212121;
+  color: rgba(0, 0, 0, 0.7);
   margin-top: 0;
   font-weight: 400;
 
@@ -14,7 +14,7 @@ const subHeading = css`
   /* 30px / 26px */
 
   a {
-    color: #212121;
+    color: rgba(0, 0, 0, 0.7);
   }
 
   @media (min-width: 43.75em) {

@@ -186,18 +186,16 @@ const navigation = css`
 `
 
 const footer = css`
-  grid-column: 3 / 11;
+  grid-column: 1 / -1;
   grid-row: -1;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  align-content: center;
+  color: #707070;
 
   padding: 50px 0;
   margin-top: -15px;
-  p {
-    font-family: Scope One;
-  }
 
   @media (max-width: 43.75em) {
     grid-row: 12;
@@ -235,8 +233,20 @@ const Layout = ({ children }) => (
     </div>
     {children}
     <footer css={footer}>
-      <p>Vilberg Eliasson</p>
-      <p>ALL RIGHTS RESERVED</p>
+      <div>
+        <LinkedIn
+          css={css`
+            a {
+              margin: 0;
+            }
+          `}
+        />
+        <Instagram />
+      </div>
+      <p>
+        All rights reserved © 2020 • Vilberg Elíasson •{' '}
+        <a href="mailto:vilbergs@gmail.com">vilbergs@gmail.com</a>
+      </p>
     </footer>
   </div>
 )

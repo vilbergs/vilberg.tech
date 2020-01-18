@@ -4,15 +4,20 @@ import config from '../../config'
 
 const baseColor = `rgba(0,0,0,0.7)`
 
+const base = color => css`
+  color: ${color};
+  transition: 0.3s;
+  margin-right: 20px;
+
+  :hover {
+    color: #7a614c;
+  }
+`
+
 export const Facebook = ({ color = baseColor, url = `${config.facebook}` }) => (
   <a
     href={url}
-    css={css`
-      color: ${color};
-      :hover {
-        color: rgba(255, 255, 255, 1);
-      }
-    `}
+    css={base(color)}
     aria-label="Visit The Shark Fin Games Facebook Page"
   >
     <svg
@@ -36,13 +41,7 @@ export const Instagram = ({
 }) => (
   <a
     href={url}
-    css={css`
-      color: ${color};
-      margin-left: 20px;
-      :hover {
-        color: rgba(255, 255, 255, 1);
-      }
-    `}
+    css={base(color)}
     aria-label="Visit The Shark Fin Games Instagram Page"
   >
     <svg
@@ -63,13 +62,7 @@ export const Instagram = ({
 export const Twitter = ({ color = baseColor, url = `${config.twitter}` }) => (
   <a
     href={url}
-    css={css`
-      color: ${color};
-      margin-left: 20px;
-      :hover {
-        color: rgba(255, 255, 255, 1);
-      }
-    `}
+    css={base(color)}
     aria-label="Visit The Shark Fin Games Twitter Page"
   >
     <svg
@@ -90,13 +83,7 @@ export const Twitter = ({ color = baseColor, url = `${config.twitter}` }) => (
 export const LinkedIn = ({ color = baseColor, url = `${config.twitter}` }) => (
   <a
     href={url}
-    css={css`
-      color: ${color};
-      margin-left: 20px;
-      :hover {
-        color: rgba(255, 255, 255, 1);
-      }
-    `}
+    css={base(color)}
     aria-label="Visit The Shark Fin Games Twitter Page"
   >
     <svg

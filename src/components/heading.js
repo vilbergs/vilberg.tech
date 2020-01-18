@@ -4,7 +4,7 @@ import 'typeface-scope-one'
 
 const heading = css`
   font-family: 'Scope One';
-  color: #212121;
+  color: rgba(0, 0, 0, 0.7);
   margin: 0;
   font-weight: 400;
 
