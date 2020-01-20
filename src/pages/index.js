@@ -32,13 +32,18 @@ const splitscreen = css`
   h1 {
     font-size: 10em;
     color: rgba(0, 0, 0, 0.8);
+    user-select: none;
+
+    &::first-letter {
+      font-size: 1.2em;
+    }
   }
 
   h2 {
     padding-right: 2em;
     margin-bottom: -10px;
     margin-bottom: 150px;
-
+    user-select: none;
     &::after {
       content: '';
       display: block;
@@ -85,7 +90,7 @@ const headshot = css`
 const bio = css`
   grid-column: 6 / 12;
   z-index: 15;
-  padding: 50px 30px;
+  padding: 30px;
 
   p {
     line-height: 1.7;

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import 'normalize.css'
-import { Link } from 'gatsby'
+import Link from '../components/Link'
 import 'typeface-roboto'
 import 'typeface-scope-one'
 import SubHeading from '../components/SubHeading'
@@ -250,7 +250,7 @@ const Layout = ({ containerOptions, children }) => (
         <Instagram />
       </div>
       <p>
-        All rights reserved © 2020 • Vilberg Elíasson •{' '}
+        All rights reserved © {new Date().getFullYear()} • Vilberg Sindri •{' '}
         <a href="mailto:vilbergs@gmail.com">vilbergs@gmail.com</a>
       </p>
     </footer>
