@@ -142,7 +142,7 @@ const container = (
   grid-row-gap: 15px;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: ${options.gridTemplateRows};
-
+  max-width: 100%;
   @media (max-width: 43.75em) {
     grid-template-rows: ${options.mobileGridTemplateRows};
   }
@@ -159,6 +159,11 @@ const navigation = css`
   padding: 0 30px;
   height: 100px;
 
+  @media (max-width: 43.75em) {
+    grid-column: 2 / 12;
+    padding: 0;
+  }
+
   h2 {
     margin: 0;
   }
@@ -166,7 +171,6 @@ const navigation = css`
   ul {
     margin: 0;
     padding: 0;
-    padding-left: 100px;
     list-style-type: none;
 
     li {
@@ -206,9 +210,6 @@ const footer = css`
 
   a {
     color: inherit;
-  }
-  @media (max-width: 43.75em) {
-    grid-row: 12;
   }
 `
 

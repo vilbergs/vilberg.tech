@@ -3,7 +3,7 @@ import { css, jsx } from '@emotion/core'
 import { useStaticQuery, graphql } from 'gatsby'
 import gcd from 'gcd'
 import Layout from '../components/layout'
-import Img from 'gatsby-image'
+import BackgroundImage from 'gatsby-background-image'
 
 const body = css`
   grid-column: 2 / 12;
@@ -14,13 +14,17 @@ const body = css`
   }
 `
 
+const background = css`
+  background-position: top center;
+  background-repeat: repeat-y;
+  background-size: cover;
+`
+
 const gallery = css`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-auto-flow: dense;
   grid-gap: 5px;
-  .portrait {
-  }
 `
 
 const Portfolio = () => {
@@ -53,15 +57,22 @@ const Portfolio = () => {
         </p>
         <div css={gallery}>
           {data.portfolio.edges.map(image => (
-            <Img
+            <BackgroundImage
               key={image.node.id}
-              style={spanByAspectRatio(
-                image.node.childImageSharp.fluid.presentationWidth,
-                image.node.childImageSharp.fluid.presentationHeight
-              )}
-              loading="lazy"
+              Tag="div"
+              backgroundColor={`#040e18`}
+              css={[
+                background,
+                spanByAspectRatio(
+                  image.node.childImageSharp.fluid.presentationWidth,
+                  image.node.childImageSharp.fluid.presentationHeight
+                ),
+              ]}
+              key={image.node.id}
               fluid={image.node.childImageSharp.fluid}
-            />
+            >
+              <div style={{}}>overlay</div>
+            </BackgroundImage>
           ))}
         </div>
       </div>
@@ -71,11 +82,6 @@ const Portfolio = () => {
 
 function spanByAspectRatio(width, height) {
   const greatest = gcd(width, height)
-
-  console.log({
-    gridColumn: `span ${width / greatest}`,
-    gridRow: `span ${height / greatest}`,
-  })
 
   let cols = width / greatest
   let rows = height / greatest
@@ -88,10 +94,10 @@ function spanByAspectRatio(width, height) {
     rows = rows === 0 ? 1 : rows
   }
 
-  return {
-    gridColumn: `span ${cols * Math.floor(Math.random() * 2)}`,
-    gridRow: `span ${rows * Math.floor(Math.random() * 2)}`,
-  }
+  return css`
+    grid-column: span ${cols * Math.floor(Math.random() * 2)};
+    grid-row: span ${rows * Math.floor(Math.random() * 2)};
+  `
 }
 
 export default Portfolio

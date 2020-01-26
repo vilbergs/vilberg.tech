@@ -212,8 +212,7 @@ const IndexPage = () => {
     <Layout
       containerOptions={{
         gridTemplateRows: 'auto 100px 350px auto 1fr 100px',
-        mobileGridTemplateRows:
-          'auto 100px 100px 150px auto 1fr auto auto auto 50px',
+        mobileGridTemplateRows: 'auto 100px 100px 150px auto 1fr auto auto ',
       }}
     >
       <Helmet>
