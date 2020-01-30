@@ -16,6 +16,7 @@ const body = css`
 
 const gallery = css`
   display: grid;
+  position: relative;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-auto-flow: dense;
   grid-gap: 5px;
@@ -53,15 +54,19 @@ const Portfolio = () => {
         </p>
         <div css={gallery}>
           {data.portfolio.edges.map(image => (
-            <Img
-              key={image.node.id}
+            <div
               style={spanByAspectRatio(
                 image.node.childImageSharp.fluid.presentationWidth,
                 image.node.childImageSharp.fluid.presentationHeight
               )}
-              loading="lazy"
-              fluid={image.node.childImageSharp.fluid}
-            />
+            >
+              <Img
+                key={image.node.id}
+                loading="lazy"
+                fluid={image.node.childImageSharp.fluid}
+              />
+              <div>overlay</div>
+            </div>
           ))}
         </div>
       </div>
