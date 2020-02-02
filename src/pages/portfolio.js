@@ -1,10 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
+import { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import gcd from 'gcd'
 import Layout from '../components/layout'
 import Img from 'gatsby-image'
 import BackgroundImage from 'gatsby-background-image'
+import Lightbox from 'react-image-lightbox'
+import 'react-image-lightbox/style.css' // This only needs to be imported once in your app
 
 const body = css`
   grid-column: 2 / 12;
@@ -17,12 +20,10 @@ const body = css`
 
 const gallery = css`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  grid-auto-flow: dense;
-  grid-auto-rows: 100px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: 5px;
-  .portrait {
-  }
+  grid-auto-flow: dense;
+  grid-auto-rows: 150px;
 `
 
 const imageStyle = css`
@@ -35,15 +36,27 @@ const overlay = image => css`
   position: absolute;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
+  color: #ffffff;
+  opacity: 0;
+  transition: all 0.6s;
+  text-transform: uppercase;
+  cursor: pointer;
 
   &:hover {
-    background-color: blue;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 1;
   }
 `
 
 const Portfolio = () => {
+  const [activePhoto, setActivePhoto] = useState(0)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+
   const data = useStaticQuery(graphql`
     query PortfolioQuery {
       portfolio: allFile(filter: { relativeDirectory: { eq: "portfolio" } }) {
@@ -64,6 +77,23 @@ const Portfolio = () => {
     }
   `)
 
+  const handleLightboxOpen = index => {
+    setActivePhoto(index)
+    setLightboxOpen(open => !open)
+  }
+
+  const handleLightboxClose = index => {
+    setLightboxOpen(open => !open)
+  }
+
+  const imageAtIndex = index =>
+    data.portfolio.edges[index].node.childImageSharp.fluid.src
+
+  const nextIndex = (activePhoto + 1) % data.portfolio.edges.length
+  const previousIndex =
+    (activePhoto + data.portfolio.edges.length - 1) %
+    data.portfolio.edges.length
+
   return (
     <Layout>
       <div css={body}>
@@ -72,7 +102,7 @@ const Portfolio = () => {
           I'm at it!
         </p>
         <div css={gallery}>
-          {data.portfolio.edges.map(image => (
+          {data.portfolio.edges.map((image, index) => (
             // <div
             // style={{
             //   position: 'relative',
@@ -93,33 +123,36 @@ const Portfolio = () => {
             //   </Img>
             // </div>
 
-            // <BackgroundImage
-            //   key={image.node.childImageSharp.id}
-            //   Tag="div"
-            //   fluid={image.node.childImageSharp.fluid}
-            //   css={spanByAspectRatio(
-            //     image.node.childImageSharp.fluid.presentationWidth,
-            //     image.node.childImageSharp.fluid.presentationHeight
-            //   )}
-            // >
-            //   <div css={overlay(image.node.childImageSharp.fluid)}>overlay</div>
-            // </BackgroundImage>
-
-            <div
+            <BackgroundImage
+              key={image.node.childImageSharp.id}
+              Tag="div"
+              fluid={image.node.childImageSharp.fluid}
               css={spanByAspectRatio(
                 image.node.childImageSharp.fluid.presentationWidth,
                 image.node.childImageSharp.fluid.presentationHeight
               )}
             >
-              <img
-                css={imageStyle}
-                src={image.node.childImageSharp.fluid.src}
-              ></img>
-              <div css={overlay}>overlay</div>
-            </div>
+              <div
+                onClick={() => handleLightboxOpen(index)}
+                css={overlay(image.node.childImageSharp.fluid)}
+              >
+                Open
+              </div>
+            </BackgroundImage>
           ))}
         </div>
       </div>
+      {lightboxOpen ? (
+        <Lightbox
+          mainSrc={imageAtIndex(activePhoto)}
+          nextSrc={imageAtIndex(nextIndex)}
+          prevSrc={imageAtIndex(previousIndex)}
+          onMoveNextRequest={() => setActivePhoto(nextIndex)}
+          onMovePrevRequest={() => setActivePhoto(previousIndex)}
+          onCloseRequest={handleLightboxClose}
+          enableZoom={false}
+        />
+      ) : null}
     </Layout>
   )
 }
@@ -127,22 +160,8 @@ const Portfolio = () => {
 function spanByAspectRatio(width, height) {
   const greatest = gcd(width, height)
 
-  console.log({
-    gridColumn: `span ${width / greatest}`,
-    gridRow: `span ${height / greatest}`,
-  })
-
   let cols = width / greatest
   let rows = height / greatest
-
-  if (cols === rows) {
-    const rand = Math.floor(Math.random() * 4)
-    cols = rand
-    rows = rand
-
-    cols = cols === 0 ? 1 : cols
-    rows = rows === 0 ? 1 : rows
-  }
 
   return css`
     position: relative;
