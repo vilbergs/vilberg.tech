@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import { useState } from 'react'
+import { useState, useLayoutEffect, useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import gcd from 'gcd'
 import Layout from '../components/layout'
 import Img from 'gatsby-image'
 import BackgroundImage from 'gatsby-background-image'
@@ -11,15 +10,14 @@ import 'react-image-lightbox/style.css' // This only needs to be imported once i
 
 const IMAGE_WIDTH = 33.33333333333333
 
+// TODO: Make layoutEffect use on resize and update height when needed
 const body = height => css`
   grid-column: 2 / 12;
   display: flex;
   flex-flow: column wrap;
-  height: 36%; /* TODO: This number is magical, find out why */
+  align-items: stretch;
 
-  p {
-    text-align: center;
-  }
+  height: 2432px;
 `
 
 const overlay = css`
@@ -33,7 +31,7 @@ const overlay = css`
   height: 100%;
   color: #ffffff;
   opacity: 0;
-  transition: all 0.6s;
+  transition: all 0.5s;
   text-transform: uppercase;
   cursor: pointer;
 
@@ -46,6 +44,8 @@ const overlay = css`
 const Portfolio = () => {
   const [activePhoto, setActivePhoto] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
+
+  const bodyRef = useRef(null)
 
   const data = useStaticQuery(graphql`
     query PortfolioQuery {
@@ -85,9 +85,12 @@ const Portfolio = () => {
     (activePhoto + data.portfolio.edges.length - 1) %
     data.portfolio.edges.length
 
+  useLayoutEffect(() => {
+    calculateTotalHeight(data.portfolio.edges, bodyRef.current)
+  })
   return (
     <Layout>
-      <div css={body()}>
+      <div css={body()} ref={bodyRef}>
         {data.portfolio.edges.map((image, index) => (
           <BackgroundImage
             key={image.node.childImageSharp.id}
@@ -103,6 +106,7 @@ const Portfolio = () => {
           </BackgroundImage>
         ))}
       </div>
+
       {lightboxOpen ? (
         <Lightbox
           mainSrc={imageAtIndex(activePhoto)}
@@ -121,12 +125,35 @@ const Portfolio = () => {
 function spanByAspectRatio(ratio) {
   return css`
     position: relative;
-    flex: 0 0 auto;
-    display: flex;
     width: ${IMAGE_WIDTH}%;
     padding-top: ${IMAGE_WIDTH / ratio}%;
-    margin: 5px;
   `
 }
 
+function useWindowSize(images) {
+  const [size, setSize] = useState([0, 0])
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight])
+    }
+    window.addEventListener('resize', updateSize)
+    updateSize()
+    return () => window.removeEventListener('resize', updateSize)
+  }, [])
+  return size
+}
+
+function calculateTotalHeight(images, bodyRef) {
+  console.log(bodyRef.clientWidth)
+  const height = images.reduce(
+    (totalHeight, image) =>
+      totalHeight +
+      (bodyRef.clientWidth * 0.33333333333333) /
+        image.node.childImageSharp.fluid.aspectRatio +
+      20,
+    0
+  )
+
+  console.log(height / 3 + 100)
+}
 export default Portfolio
