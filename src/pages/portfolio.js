@@ -3,7 +3,6 @@ import { css, jsx } from '@emotion/core'
 import { useState, useLayoutEffect, useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Layout from '../components/layout'
-import Img from 'gatsby-image'
 import BackgroundImage from 'gatsby-background-image'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css' // This only needs to be imported once in your app
@@ -17,7 +16,7 @@ const body = height => css`
   flex-flow: column wrap;
   align-items: stretch;
 
-  height: 2432px;
+  height: ${height}px;
 `
 
 const overlay = css`
@@ -44,7 +43,6 @@ const overlay = css`
 const Portfolio = () => {
   const [activePhoto, setActivePhoto] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
-
   const bodyRef = useRef(null)
 
   const data = useStaticQuery(graphql`
@@ -85,12 +83,11 @@ const Portfolio = () => {
     (activePhoto + data.portfolio.edges.length - 1) %
     data.portfolio.edges.length
 
-  useLayoutEffect(() => {
-    calculateTotalHeight(data.portfolio.edges, bodyRef.current)
-  })
+  const totalHeight = useTotalHeight(data.portfolio.edges, bodyRef.current)
+
   return (
     <Layout>
-      <div css={body()} ref={bodyRef}>
+      <div css={body(totalHeight)} ref={bodyRef}>
         {data.portfolio.edges.map((image, index) => (
           <BackgroundImage
             key={image.node.childImageSharp.id}
@@ -127,33 +124,45 @@ function spanByAspectRatio(ratio) {
     position: relative;
     width: ${IMAGE_WIDTH}%;
     padding-top: ${IMAGE_WIDTH / ratio}%;
+    margin: 2.5px;
   `
 }
 
-function useWindowSize(images) {
+function useWindowSize() {
   const [size, setSize] = useState([0, 0])
   useLayoutEffect(() => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight])
     }
     window.addEventListener('resize', updateSize)
-    updateSize()
     return () => window.removeEventListener('resize', updateSize)
   }, [])
   return size
 }
 
-function calculateTotalHeight(images, bodyRef) {
-  console.log(bodyRef.clientWidth)
-  const height = images.reduce(
-    (totalHeight, image) =>
-      totalHeight +
-      (bodyRef.clientWidth * 0.33333333333333) /
-        image.node.childImageSharp.fluid.aspectRatio +
-      20,
-    0
-  )
+function useTotalHeight(images, ref) {
+  const width = ref ? ref.clientWidth : window.innerWidth
 
-  console.log(height / 3 + 100)
+  const [height, setHeight] = useState(0)
+  useLayoutEffect(() => {
+    function updateSize() {
+      const newHeight = images.reduce(
+        (totalHeight, image) =>
+          totalHeight +
+          (width * 0.33333333333333) /
+            image.node.childImageSharp.fluid.aspectRatio +
+          20,
+        0
+      )
+
+      setHeight(newHeight / 3)
+    }
+    window.addEventListener('resize', updateSize)
+    updateSize()
+
+    return () => window.removeEventListener('resize', updateSize)
+  }, [])
+
+  return height
 }
 export default Portfolio
