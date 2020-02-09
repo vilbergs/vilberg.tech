@@ -89,6 +89,8 @@ const Portfolio = () => {
 
   return (
     <Layout>
+      <hr style={{}} />
+
       <div css={body} ref={bodyRef}>
         {data.portfolio.edges.map((image, index) => (
           <BackgroundImage

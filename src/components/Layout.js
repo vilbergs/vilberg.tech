@@ -149,7 +149,7 @@ const container = (
 `
 
 const navigation = css`
-  grid-column: 3 / 11;
+  grid-column: 2 / 12;
   grid-row: 1;
   z-index: 16;
   display: flex;
@@ -188,8 +188,14 @@ const navigation = css`
         border-left: none;
       }
 
+      .active {
+        border-bottom: 3px solid #7a614c;
+      }
+
       a {
         font-family: Scope One;
+        text-decoration: none;
+
         color: inherit;
       }
     }
@@ -217,15 +223,21 @@ const footer = css`
 const Layout = ({ containerOptions, children }) => (
   <div css={[container(containerOptions), typography]}>
     <div css={[typography, navigation]}>
-      <SubHeading>
-        <Link to="/">V</Link>
-      </SubHeading>
       <ul>
         <li>
-          <Link to="/blog">Blog</Link>
+          <Link to="/" activeClassName="active">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/portfolio">Portfolio</Link>
+          <Link to="/blog" activeClassName="active">
+            Blog
+          </Link>
+        </li>
+        <li>
+          <Link to="/portfolio" activeClassName="active">
+            Portfolio
+          </Link>
         </li>
       </ul>
       <div>
@@ -239,6 +251,7 @@ const Layout = ({ containerOptions, children }) => (
         <Instagram />
       </div>
     </div>
+
     {children}
     <footer css={footer}>
       <div>
