@@ -7,14 +7,20 @@ import BackgroundImage from 'gatsby-background-image'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css' // This only needs to be imported once in your app
 
-// TODO: Make layoutEffect use on resize and update height when needed
+const COLUMNS = 3
+
 const body = css`
   grid-column: 2 / 12;
   grid-row: 2;
 
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: repeat(3, minmax(33%, 1fr));
+  grid-template-columns: repeat(3, ${100 / COLUMNS}%);
+  overflow: hidden;
+`
+const imageItem = css`
+  position: relative;
+  padding-top: 100%;
 `
 
 const overlay = css`
@@ -89,9 +95,7 @@ const Portfolio = () => {
             key={image.node.childImageSharp.id}
             Tag="div"
             fluid={image.node.childImageSharp.fluid}
-            css={spanByAspectRatio(
-              image.node.childImageSharp.fluid.aspectRatio
-            )}
+            css={imageItem}
           >
             <div onClick={() => handleLightboxOpen(index)} css={overlay}>
               Open
