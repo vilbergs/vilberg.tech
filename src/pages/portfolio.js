@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core'
 import { useState, useLayoutEffect, useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import BackgroundImage from 'gatsby-background-image'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css' // This only needs to be imported once in your app
