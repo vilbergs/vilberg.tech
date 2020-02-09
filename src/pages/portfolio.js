@@ -8,10 +8,12 @@ import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css' // This only needs to be imported once in your app
 
 const IMAGE_WIDTH = 33.33333333333333
+const IMAGE_MARGIN = 2.5
 
 // TODO: Make layoutEffect use on resize and update height when needed
 const body = height => css`
   grid-column: 2 / 12;
+  grid-row: 2;
   display: flex;
   flex-flow: column wrap;
   align-items: stretch;
@@ -103,7 +105,6 @@ const Portfolio = () => {
           </BackgroundImage>
         ))}
       </div>
-
       {lightboxOpen ? (
         <Lightbox
           mainSrc={imageAtIndex(activePhoto)}
@@ -124,34 +125,24 @@ function spanByAspectRatio(ratio) {
     position: relative;
     width: ${IMAGE_WIDTH}%;
     padding-top: ${IMAGE_WIDTH / ratio}%;
-    margin: 2.5px;
+    margin: ${IMAGE_MARGIN}px;
   `
 }
 
-function useWindowSize() {
-  const [size, setSize] = useState([0, 0])
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight])
-    }
-    window.addEventListener('resize', updateSize)
-    return () => window.removeEventListener('resize', updateSize)
-  }, [])
-  return size
-}
-
 function useTotalHeight(images, ref) {
-  const width = ref ? ref.clientWidth : window.innerWidth
+  const imageSizeFactor = IMAGE_WIDTH / 100
+  const margin = IMAGE_MARGIN * 2
 
   const [height, setHeight] = useState(0)
   useLayoutEffect(() => {
     function updateSize() {
+      const width = ref ? ref.clientWidth : window.innerWidth
+
       const newHeight = images.reduce(
         (totalHeight, image) =>
           totalHeight +
-          (width * 0.33333333333333) /
-            image.node.childImageSharp.fluid.aspectRatio +
-          20,
+          (width * imageSizeFactor + margin) /
+            image.node.childImageSharp.fluid.aspectRatio,
         0
       )
 
