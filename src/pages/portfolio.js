@@ -7,18 +7,14 @@ import BackgroundImage from 'gatsby-background-image'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css' // This only needs to be imported once in your app
 
-const IMAGE_WIDTH = 33.33333333333333
-const IMAGE_MARGIN = 2.5
-
 // TODO: Make layoutEffect use on resize and update height when needed
-const body = height => css`
+const body = css`
   grid-column: 2 / 12;
   grid-row: 2;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: stretch;
 
-  height: ${height}px;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(3, minmax(33%, 1fr));
 `
 
 const overlay = css`
@@ -85,11 +81,9 @@ const Portfolio = () => {
     (activePhoto + data.portfolio.edges.length - 1) %
     data.portfolio.edges.length
 
-  const totalHeight = useTotalHeight(data.portfolio.edges, bodyRef)
-
   return (
     <Layout>
-      <div css={body(totalHeight)} ref={bodyRef}>
+      <div css={body} ref={bodyRef}>
         {data.portfolio.edges.map((image, index) => (
           <BackgroundImage
             key={image.node.childImageSharp.id}
@@ -120,42 +114,11 @@ const Portfolio = () => {
   )
 }
 
-function spanByAspectRatio(ratio) {
+function spanByAspectRatio(s) {
   return css`
     position: relative;
-    width: ${IMAGE_WIDTH}%;
-    padding-top: ${IMAGE_WIDTH / ratio}%;
-    margin: ${IMAGE_MARGIN}px;
+    padding-top: 100%;
   `
 }
 
-function useTotalHeight(images, ref) {
-  const imageSizeFactor = IMAGE_WIDTH / 100
-  const margin = IMAGE_MARGIN * 2
-
-  const [height, setHeight] = useState(0)
-  useLayoutEffect(() => {
-    function updateSize() {
-      const width = ref.current.clientWidth
-
-      const newHeight = images.reduce(
-        (totalHeight, image) =>
-          totalHeight +
-          (width * imageSizeFactor + margin) /
-            image.node.childImageSharp.fluid.aspectRatio,
-        0
-      )
-
-      setHeight(newHeight / 3)
-    }
-
-    if (ref.current) {
-      window.addEventListener('resize', updateSize)
-      updateSize()
-    }
-    return () => window.removeEventListener('resize', updateSize)
-  }, [])
-
-  return height
-}
 export default Portfolio
