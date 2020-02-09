@@ -85,7 +85,7 @@ const Portfolio = () => {
     (activePhoto + data.portfolio.edges.length - 1) %
     data.portfolio.edges.length
 
-  const totalHeight = useTotalHeight(data.portfolio.edges, bodyRef.current)
+  const totalHeight = useTotalHeight(data.portfolio.edges, bodyRef)
 
   return (
     <Layout>
@@ -136,7 +136,7 @@ function useTotalHeight(images, ref) {
   const [height, setHeight] = useState(0)
   useLayoutEffect(() => {
     function updateSize() {
-      const width = ref ? ref.clientWidth : window.innerWidth
+      const width = ref.current.clientWidth
 
       const newHeight = images.reduce(
         (totalHeight, image) =>
@@ -148,9 +148,11 @@ function useTotalHeight(images, ref) {
 
       setHeight(newHeight / 3)
     }
-    window.addEventListener('resize', updateSize)
-    updateSize()
 
+    if (ref.current) {
+      window.addEventListener('resize', updateSize)
+      updateSize()
+    }
     return () => window.removeEventListener('resize', updateSize)
   }, [])
 
