@@ -9,7 +9,10 @@ import Link from '../components/Link'
 
 const body = css`
   grid-column: 4 / 10;
-  grid-row: 2;
+
+  @media (max-width: 43.75em) {
+    grid-column: 2 / 12;
+  }
 `
 
 const blogListItem = css`

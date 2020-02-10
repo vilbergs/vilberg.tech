@@ -14,10 +14,14 @@ const body = css`
   grid-row: 2;
 
   display: grid;
-  grid-gap: 5px;
-  grid-template-columns: repeat(3, ${100 / COLUMNS}%);
-  overflow: hidden;
+  grid-gap: 2px;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 43.75em) {
+    grid-column: 1 / -1;
+  }
 `
+
 const imageItem = css`
   position: relative;
   padding-top: 100%;
@@ -89,8 +93,6 @@ const Portfolio = () => {
 
   return (
     <Layout>
-      <hr style={{}} />
-
       <div css={body} ref={bodyRef}>
         {data.portfolio.edges.map((image, index) => (
           <BackgroundImage

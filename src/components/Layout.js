@@ -137,6 +137,13 @@ const container = (
     mobileGridTemplateRows: 'auto 1fr auto',
   }
 ) => css`
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #333;
+      color: white;
+    }
+  }
+
   display: grid;
   grid-column-gap: 15px;
   grid-row-gap: 15px;
@@ -156,12 +163,10 @@ const navigation = css`
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  padding: 0 30px;
   height: 100px;
 
   @media (max-width: 43.75em) {
     grid-column: 2 / 12;
-    padding: 0;
   }
 
   h2 {
@@ -173,6 +178,10 @@ const navigation = css`
     padding: 0;
     list-style-type: none;
 
+    @media (max-width: 43.75em) {
+      margin: 0 auto;
+    }
+
     li {
       display: inline;
       padding: 0 15px;
@@ -180,9 +189,6 @@ const navigation = css`
       font-size: 1.5em;
       font-weight: 500;
       text-align: center;
-
-      @media (min-width: 43.75em) {
-      }
 
       &:first-of-type {
         border-left: none;
@@ -197,8 +203,18 @@ const navigation = css`
         text-decoration: none;
 
         color: inherit;
+
+        @media (max-width: 43.75em) {
+          text-align: center;
+        }
       }
     }
+  }
+`
+
+const navSocialMedia = css`
+  @media (max-width: 43.75em) {
+    display: none;
   }
 `
 
@@ -240,7 +256,7 @@ const Layout = ({ containerOptions, children }) => (
           </Link>
         </li>
       </ul>
-      <div>
+      <div css={navSocialMedia}>
         <LinkedIn
           css={css`
             a {

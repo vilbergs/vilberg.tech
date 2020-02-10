@@ -9,14 +9,12 @@ import SplitScreen from '../components/SplitScreen'
 import Card from '../components/Card'
 import SubHeading from '../components/SubHeading'
 
+import { LinkedIn, Instagram } from '../components/Social'
+
 const hero = css`
   grid-column: 1 / -1;
   grid-row: 1;
-  height: 100vh;
-
-  @media (max-width: 43.75em) {
-    height: 30vh;
-  }
+  height: calc(100vw * (9 / 16));
 `
 
 const splitscreen = css`
@@ -33,7 +31,6 @@ const splitscreen = css`
     font-size: 10em;
     color: rgba(0, 0, 0, 0.8);
     user-select: none;
-
     &::first-letter {
       font-size: 1.2em;
     }
@@ -54,13 +51,13 @@ const splitscreen = css`
   }
 
   @media (max-width: 43.75em) {
+    grid-column: 1 / -1;
     h1 {
-      font-size: 6em;
+      font-size: 5em;
       color: rgba(0, 0, 0, 0.8);
     }
 
     h2 {
-      padding-left: 0.5em;
       margin-bottom: -10px;
       margin-bottom: 150px;
 
@@ -78,7 +75,7 @@ const headshot = css`
   grid-column: 3 / 6;
   grid-row: 2 / 4;
   z-index: 15;
-  margin-top: -30px;
+  margin-top: -0px;
 
   @media (max-width: 43.75em) {
     grid-column: 1 / 10;
@@ -87,6 +84,38 @@ const headshot = css`
     border-bottom-left-radius: 0;
   }
 `
+
+const navSocialMedia = css`
+  display: none;
+
+  @media (max-width: 43.75em) {
+    display: block;
+    grid-column: 10 / -1;
+    grid-row: 3 / 5;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+    }
+
+    a {
+      position: relative;
+      height: 0;
+      width: 50%;
+      padding: 0;
+      padding-bottom: 100%;
+    }
+  }
+`
+
 const bio = css`
   grid-column: 6 / 12;
   z-index: 15;
@@ -220,11 +249,26 @@ const IndexPage = () => {
         <title>Home</title>
       </Helmet>
       <Background css={hero} fluid={data.clouds.childImageSharp.fluid} />
-      <SplitScreen css={splitscreen} fluid={data.bg.childImageSharp.fluid}>
+      <SplitScreen
+        css={splitscreen}
+        fluid={data.bg.childImageSharp.fluid}
+        border={false}
+      >
         <Heading>Vilberg</Heading>
         <SubHeading>Developer / Photographer</SubHeading>
       </SplitScreen>
       <SplitScreen css={headshot} fluid={data.headshot.childImageSharp.fluid} />
+
+      <div css={navSocialMedia}>
+        <LinkedIn
+          css={css`
+            a {
+              margin: 0;
+            }
+          `}
+        />
+        <Instagram />
+      </div>
       <div css={bio}>
         <p>
           Welcome to my site, a platform where I showcase photos from my
@@ -236,10 +280,6 @@ const IndexPage = () => {
           work fulltime as a developer. I've always wanted a space where I can
           reflect on and solidify my half-baked ideas about everything from tech
           to philosophy.
-        </p>
-        <p>
-          May you find joy in flicking through my pics, blog posts or whatever
-          else that might end up here.
         </p>
       </div>
 
