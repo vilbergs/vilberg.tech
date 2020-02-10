@@ -14,7 +14,7 @@ import SplitScreen from '../components/SplitScreen'
 import Card from '../components/Card'
 import SubHeading from '../components/SubHeading'
 
-import { LinkedIn, Instagram } from '../components/Social'
+import { LinkedIn, Instagram, GitHub } from '../components/Social'
 
 const hero = css`
   grid-column: 1 / -1;
@@ -346,14 +346,9 @@ const IndexPage = () => {
       <SplitScreen css={headshot} fluid={data.headshot.childImageSharp.fluid} />
 
       <div css={navSocialMedia}>
-        <LinkedIn
-          css={css`
-            a {
-              margin: 0;
-            }
-          `}
-        />
-        <Instagram />
+        <LinkedIn color="#7a614c" />
+        <Instagram color="#7a614c" />
+        <GitHub color="#7a614c" />
       </div>
       <div css={bio}>
         <p>

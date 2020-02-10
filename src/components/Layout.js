@@ -4,7 +4,7 @@ import 'normalize.css'
 import Link from '../components/Link'
 import 'typeface-roboto'
 import 'typeface-scope-one'
-import { LinkedIn, Instagram } from '../components/Social'
+import { LinkedIn, Instagram, GitHub } from '../components/Social'
 
 const breakpoints = [600, 900, 1200]
 
@@ -258,27 +258,16 @@ const Layout = ({ containerOptions, children }) => (
         </li>
       </ul>
       <div css={navSocialMedia}>
-        <LinkedIn
-          css={css`
-            a {
-              margin: 0;
-            }
-          `}
-        />
+        <LinkedIn />
         <Instagram />
+        <GitHub />
       </div>
     </div>
 
     {children}
     <footer css={footer}>
       <div>
-        <LinkedIn
-          css={css`
-            a {
-              margin: 0;
-            }
-          `}
-        />
+        <LinkedIn />
         <Instagram />
       </div>
       <p>
