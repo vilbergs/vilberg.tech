@@ -4,8 +4,15 @@ import 'normalize.css'
 import Link from '../components/Link'
 import 'typeface-roboto'
 import 'typeface-scope-one'
-import SubHeading from '../components/SubHeading'
 import { LinkedIn, Instagram } from '../components/Social'
+
+const breakpoints = [600, 900, 1200]
+
+export const phone = `@media (max-width: ${599}px)`
+
+export const [tabletPortrait, tabletLandscape, desktop] = breakpoints.map(
+  bp => `@media (min-width: ${bp}px)`
+)
 
 const typography = css`
   body {
@@ -45,7 +52,7 @@ const typography = css`
   /* equivalent to 16px */
   line-height: 112.5%;
 
-  @media (min-width: 43.75em) {
+  ${desktop} {
     font-size: 112.5%;
 
     /* equivalent to 16px */
@@ -61,7 +68,7 @@ const typography = css`
     /* 30px / 26px */
   }
 
-  @media (min-width: 43.75em) {
+  ${desktop} {
     h2 {
       font-size: 2em;
       /* 2x body copy size = 32px */
@@ -85,7 +92,7 @@ const typography = css`
     font-weight: 400;
   }
 
-  @media (min-width: 43.75em) {
+  ${desktop} {
     h3 {
       font-size: 1.5em;
       /* 1.5x body copy size = 24px */
@@ -107,7 +114,7 @@ const typography = css`
     line-height: 1.11111111;
   }
 
-  @media (min-width: 43.75em) {
+  ${desktop} {
     h4 {
       line-height: 1.22222222;
       /* (22px / 18px */
@@ -121,7 +128,7 @@ const typography = css`
     /* 25px / 20px */
   }
 
-  @media (min-width: 43.75em) {
+  ${desktop} {
     blockquote {
       font-size: 1.5em;
       /* 24px / 16px = */
@@ -143,7 +150,8 @@ const container = (
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: ${options.gridTemplateRows};
   max-width: 100%;
-  @media (max-width: 43.75em) {
+
+  ${phone} {
     grid-template-rows: ${options.mobileGridTemplateRows};
   }
 `
@@ -158,7 +166,7 @@ const navigation = css`
   align-content: center;
   height: 100px;
 
-  @media (max-width: 43.75em) {
+  ${tabletPortrait} {
     grid-column: 2 / 12;
   }
 
@@ -171,7 +179,7 @@ const navigation = css`
     padding: 0;
     list-style-type: none;
 
-    @media (max-width: 43.75em) {
+    ${phone} {
       margin: 0 auto;
     }
 
@@ -197,7 +205,7 @@ const navigation = css`
 
         color: inherit;
 
-        @media (max-width: 43.75em) {
+        ${phone} {
           text-align: center;
         }
       }
@@ -206,7 +214,7 @@ const navigation = css`
 `
 
 const navSocialMedia = css`
-  @media (max-width: 43.75em) {
+  ${phone} {
     display: none;
   }
 `

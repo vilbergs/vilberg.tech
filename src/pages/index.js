@@ -2,7 +2,12 @@
 import { css, jsx } from '@emotion/core'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import Layout from '../components/Layout'
+import Layout, {
+  phone,
+  tabletPortrait,
+  tabletLandscape,
+  desktop,
+} from '../components/Layout'
 import Background from '../components/Background'
 import Heading from '../components/Heading'
 import SplitScreen from '../components/SplitScreen'
@@ -72,26 +77,49 @@ const splitscreen = css`
   }
 `
 const headshot = css`
-  grid-column: 3 / 6;
-  grid-row: 2 / 4;
   z-index: 15;
-  margin-top: -0px;
 
-  @media (max-width: 43.75em) {
+  ${phone} {
     grid-column: 1 / 10;
-    grid-row: 2 / 5;
+    grid-row: 2 / 4;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+
+  ${tabletPortrait} {
+    grid-column: 1 / 6;
+    grid-row: 2 / 4;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-top: -40px;
+  }
+
+  ${tabletLandscape} {
+    grid-column: 3 / 7;
+    grid-row: 2 / 4;
+    margin-top: -50px;
+
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  ${desktop} {
+    grid-column: 3 / 6;
+    grid-row: 2 / 4;
+    margin-top: -50px;
+
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
   }
 `
 
 const navSocialMedia = css`
   display: none;
 
-  @media (max-width: 43.75em) {
+  ${phone} {
     display: block;
     grid-column: 10 / -1;
-    grid-row: 3 / 5;
+    grid-row: 3 / 4;
 
     display: flex;
     flex-direction: column;
@@ -126,60 +154,118 @@ const bio = css`
     font-size: 112, 5%;
   }
 
-  @media (max-width: 43.75em) {
+  ${phone} {
     grid-column: 1 / -1;
-    grid-row: 6;
-    padding: 0 30px;
+    grid-row: 4;
+    padding: 30px;
+  }
+
+  ${tabletPortrait} {
+    grid-column: 6 / 12;
+    grid-row: 3 / 4;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0;
+    padding-left: 30px;
+  }
+
+  ${tabletLandscape} {
+    grid-column: 7 / 12;
+    grid-row: 3 / 4;
+  }
+
+  ${desktop} {
+    grid-column: 6 / 12;
+    grid-row: 3 / 4;
   }
 `
 
 const recentPostsHeading = css`
-  grid-column: 3 / 7;
-  grid-row: 4;
-  z-index: 15;
-  margin-top: 50px;
-  margin-bottom: 15px;
-
-  @media (max-width: 43.75em) {
+  ${phone} {
+    padding: 0;
     grid-column: 2 / 12;
-    grid-row: 7;
+    grid-row: auto;
+  }
+
+  ${tabletPortrait} {
+    margin-top: 30px;
+    grid-column: 2 / 12;
+    grid-row: 4;
+  }
+
+  ${desktop} {
+    grid-column: 3 / 12;
+    grid-row: 4;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 30px 0;
   }
 `
 const newestPost = css`
-  grid-column: 3 / 6;
-  grid-row: 5;
-
-  @media (max-width: 43.75em) {
+  ${phone} {
     grid-column: 2 / 12;
-    grid-row: 8;
+    grid-row: auto;
+  }
+
+  ${tabletPortrait} {
+    grid-column: 2 / 12;
+    grid-row: 5;
+  }
+
+  ${desktop} {
+    grid-column: 3 / 6;
+    grid-row: 5 / 6;
   }
 `
 const firstRecentPost = css`
-  grid-column: 6 / 9;
-  grid-row: 5;
-
-  @media (max-width: 43.75em) {
+  ${phone} {
     grid-column: 2 / 12;
-    grid-row: 9;
+    grid-row: 6;
+  }
+
+  ${tabletPortrait} {
+    grid-column: 2 / 7;
+    grid-row: 6;
+  }
+
+  ${desktop} {
+    grid-column: 6 / 9;
+    grid-row: 5;
   }
 `
 const secondRecentPost = css`
-  grid-column: 9 / 12;
-  grid-row: 5;
-
-  @media (max-width: 43.75em) {
+  ${phone} {
     grid-column: 2 / 12;
-    grid-row: 10;
+    grid-row: auto;
+  }
+
+  ${tabletPortrait} {
+    grid-column: 7 / 12;
+    grid-row: auto;
+  }
+
+  ${desktop} {
+    grid-column: 9 / 12;
+    grid-row: 5;
   }
 `
 
 const nopostsfallback = css`
-  grid-column: 6 / 12;
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: 43.75em) {
+
+  ${phone} {
     display: none;
+  }
+
+  ${tabletPortrait} {
+    grid-column: 2 / 12;
+    grid-row: 5;
+  }
+
+  ${desktop} {
+    grid-column: 6 / 12;
   }
 `
 
@@ -240,8 +326,8 @@ const IndexPage = () => {
   return (
     <Layout
       containerOptions={{
-        gridTemplateRows: 'auto 100px 350px auto 1fr 100px',
-        mobileGridTemplateRows: 'auto 100px 100px 150px auto 1fr auto auto ',
+        gridTemplateRows: 'auto 100px 350px auto 1fr auto 100px',
+        mobileGridTemplateRows: 'auto 100px 350px auto auto auto auto auto',
       }}
     >
       <Helmet>
