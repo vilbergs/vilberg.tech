@@ -137,13 +137,6 @@ const container = (
     mobileGridTemplateRows: 'auto 1fr auto',
   }
 ) => css`
-  @media (prefers-color-scheme: dark) {
-    body {
-      background: #333;
-      color: white;
-    }
-  }
-
   display: grid;
   grid-column-gap: 15px;
   grid-row-gap: 15px;

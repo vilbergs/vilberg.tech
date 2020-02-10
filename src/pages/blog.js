@@ -43,7 +43,12 @@ const Blog = ({ data }) => {
               to={frontmatter.path}
             ></Card>
             <section css={postExcerpt}>
-              <Heading>{frontmatter.title}</Heading>
+              <Link
+                style={{ color: 'inherit', textDecoration: 'none' }}
+                to={frontmatter.path}
+              >
+                <Heading>{frontmatter.title}</Heading>
+              </Link>
 
               <p>{excerpt}</p>
 

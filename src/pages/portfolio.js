@@ -14,7 +14,7 @@ const body = css`
   grid-row: 2;
 
   display: grid;
-  grid-gap: 2px;
+  grid-gap: 1px;
   grid-template-columns: repeat(3, 1fr);
 
   @media (max-width: 43.75em) {
