@@ -70,6 +70,12 @@ const Portfolio = () => {
     }
   `)
 
+  const handleLightboxOpenOnKeyPress = (e, index) => {
+    if (e.keyCode === 13) {
+      handleLightboxOpen(index)
+    }
+  }
+
   const handleLightboxOpen = index => {
     setActivePhoto(index)
     setLightboxOpen(open => !open)
@@ -98,7 +104,12 @@ const Portfolio = () => {
             fluid={image.node.childImageSharp.fluid}
             css={imageItem}
           >
-            <div onClick={() => handleLightboxOpen(index)} css={overlay}>
+            <div
+              onKeyPress={e => handleLightboxOpenOnKeyPress(e, index)}
+              onClick={() => handleLightboxOpen(index)}
+              css={overlay}
+              role="button"
+            >
               Open
             </div>
           </BackgroundImage>
