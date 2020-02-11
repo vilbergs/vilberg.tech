@@ -23,7 +23,6 @@ const hero = css`
 `
 
 const splitscreen = css`
-  grid-column: 2 / 12;
   grid-row: 1 / 3;
   z-index: 10;
   margin-top: 100px;
@@ -32,30 +31,7 @@ const splitscreen = css`
   align-items: center;
   flex-direction: column;
 
-  h1 {
-    font-size: 10em;
-    color: rgba(0, 0, 0, 0.8);
-    user-select: none;
-    &::first-letter {
-      font-size: 1.2em;
-    }
-  }
-
-  h2 {
-    padding-right: 2em;
-    margin-bottom: -10px;
-    margin-bottom: 150px;
-    user-select: none;
-    &::after {
-      content: '';
-      display: block;
-      padding-bottom: 30px;
-      width: 50%;
-      border-bottom: 10px solid #7a614c;
-    }
-  }
-
-  @media (max-width: 43.75em) {
+  ${phone} {
     grid-column: 1 / -1;
     h1 {
       font-size: 5em;
@@ -66,6 +42,54 @@ const splitscreen = css`
       margin-bottom: -10px;
       margin-bottom: 150px;
 
+      &::after {
+        content: '';
+        display: block;
+        padding-bottom: 30px;
+        width: 50%;
+        border-bottom: 10px solid #7a614c;
+      }
+    }
+  }
+
+  ${tabletPortrait} {
+    grid-column: 1 / -1;
+    h1 {
+      font-size: 5em;
+      color: rgba(0, 0, 0, 0.8);
+    }
+
+    h2 {
+      margin-bottom: -10px;
+      margin-bottom: 150px;
+
+      &::after {
+        content: '';
+        display: block;
+        padding-bottom: 30px;
+        width: 50%;
+        border-bottom: 10px solid #7a614c;
+      }
+    }
+  }
+
+  ${tabletLandscape} {
+    grid-column: 2 / 12;
+
+    h1 {
+      font-size: 10em;
+      color: rgba(0, 0, 0, 0.8);
+      user-select: none;
+      &::first-letter {
+        font-size: 1.2em;
+      }
+    }
+
+    h2 {
+      padding-right: 2em;
+      margin-bottom: -10px;
+      margin-bottom: 150px;
+      user-select: none;
       &::after {
         content: '';
         display: block;

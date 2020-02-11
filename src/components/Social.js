@@ -9,7 +9,7 @@ const baseColor = `rgba(0,0,0,0.7)`
 const base = color => css`
   color: ${color};
   transition: 0.3s;
-  margin-right: 20px;
+  margin-right: 30px;
 
   :hover {
     color: #7a614c;

@@ -1,13 +1,11 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
-import { useState, useLayoutEffect, useRef } from 'react'
+import { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import BackgroundImage from 'gatsby-background-image'
 import Lightbox from 'react-image-lightbox'
 import 'react-image-lightbox/style.css' // This only needs to be imported once in your app
-
-const COLUMNS = 3
 
 const body = css`
   grid-column: 2 / 12;
@@ -51,7 +49,6 @@ const overlay = css`
 const Portfolio = () => {
   const [activePhoto, setActivePhoto] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
-  const bodyRef = useRef(null)
 
   const data = useStaticQuery(graphql`
     query PortfolioQuery {
@@ -93,7 +90,7 @@ const Portfolio = () => {
 
   return (
     <Layout>
-      <div css={body} ref={bodyRef}>
+      <div css={body}>
         {data.portfolio.edges.map((image, index) => (
           <BackgroundImage
             key={image.node.childImageSharp.id}
@@ -120,13 +117,6 @@ const Portfolio = () => {
       ) : null}
     </Layout>
   )
-}
-
-function spanByAspectRatio(s) {
-  return css`
-    position: relative;
-    padding-top: 100%;
-  `
 }
 
 export default Portfolio

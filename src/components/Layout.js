@@ -224,8 +224,6 @@ const footer = css`
   grid-row: -1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   color: #707070;
 
@@ -234,6 +232,10 @@ const footer = css`
 
   a {
     color: inherit;
+
+    &:last-child {
+      margin: 0;
+    }
   }
 `
 
@@ -269,6 +271,7 @@ const Layout = ({ containerOptions, children }) => (
       <div>
         <LinkedIn />
         <Instagram />
+        <GitHub />
       </div>
       <p>
         All rights reserved © {new Date().getFullYear()} • Vilberg Sindri •{' '}

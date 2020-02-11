@@ -13,6 +13,7 @@ module.exports = {
       options: {
         name: `posts`,
         path: `${__dirname}/src/posts`,
+        ignore: [`**/\.*`], // ignore files starting with a dot
       },
     },
     {
