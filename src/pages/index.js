@@ -120,8 +120,6 @@ const headshot = css`
 
   ${tabletLandscape} {
     grid-column: 3 / 7;
-    grid-row: 2 / 4;
-    margin-top: -50px;
 
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -130,10 +128,6 @@ const headshot = css`
   ${desktop} {
     grid-column: 3 / 6;
     grid-row: 2 / 4;
-    margin-top: -50px;
-
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
   }
 `
 
@@ -169,7 +163,6 @@ const navSocialMedia = css`
 `
 
 const bio = css`
-  grid-column: 6 / 12;
   z-index: 15;
   padding: 30px;
 
@@ -181,26 +174,21 @@ const bio = css`
   ${phone} {
     grid-column: 1 / -1;
     grid-row: 4;
-    padding: 30px;
   }
 
   ${tabletPortrait} {
     grid-column: 6 / 12;
-    grid-row: 3 / 4;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    grid-row: 3;
     padding: 0;
     padding-left: 30px;
   }
 
   ${tabletLandscape} {
     grid-column: 7 / 12;
-    grid-row: 3 / 4;
   }
 
   ${desktop} {
     grid-column: 6 / 12;
-    grid-row: 3 / 4;
   }
 `
 
@@ -212,16 +200,13 @@ const recentPostsHeading = css`
   }
 
   ${tabletPortrait} {
-    margin-top: 30px;
+    margin-top: 60px;
     grid-column: 2 / 12;
     grid-row: 4;
   }
 
   ${desktop} {
     grid-column: 3 / 12;
-    grid-row: 4;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
     padding: 30px 0;
   }
 `
@@ -238,18 +223,17 @@ const newestPost = css`
 
   ${desktop} {
     grid-column: 3 / 6;
-    grid-row: 5 / 6;
   }
 `
 const firstRecentPost = css`
+  grid-row: 6;
+
   ${phone} {
     grid-column: 2 / 12;
-    grid-row: 6;
   }
 
   ${tabletPortrait} {
     grid-column: 2 / 7;
-    grid-row: 6;
   }
 
   ${desktop} {
@@ -258,14 +242,14 @@ const firstRecentPost = css`
   }
 `
 const secondRecentPost = css`
+  grid-row: auto;
+
   ${phone} {
     grid-column: 2 / 12;
-    grid-row: auto;
   }
 
   ${tabletPortrait} {
     grid-column: 7 / 12;
-    grid-row: auto;
   }
 
   ${desktop} {
