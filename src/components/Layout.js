@@ -39,6 +39,7 @@ const typography = css`
     color: rgba(0, 0, 0, 0.87);
   }
 
+  ul,
   h3,
   h4,
   h5,
