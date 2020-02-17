@@ -10,6 +10,7 @@ const splitscreen = css`
   grid-row: 1 / 3;
   z-index: 10;
   padding-top: 66.66%;
+
   @media (max-width: 43.75em) {
     grid-column: 2 / 12;
   }
@@ -20,6 +21,7 @@ const body = css`
   grid-column: 3 / 11;
   max-width: 800px;
 
+  margin: 0 auto;
   p {
     color: rgb(34, 36, 38);
     line-height: 1.7;
