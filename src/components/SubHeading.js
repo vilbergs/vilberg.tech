@@ -31,15 +31,8 @@ const subHeading = css`
   }
 `
 
-const second = css`
-  a {
-    font-family: Scope One;
-    color: rgba(0, 0, 0, 0.7);
-  }
-`
-
 const SubHeading = props => (
-  <h2 css={[subHeading, second]} {...props}>
+  <h2 css={[subHeading]} {...props}>
     {props.children}
   </h2>
 )

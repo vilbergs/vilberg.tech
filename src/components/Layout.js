@@ -49,6 +49,10 @@ const typography = css`
     -webkit-font-smoothing: antialiased;
   }
 
+  p {
+    line-height: 1.7;
+  }
+
   font-size: 1em;
   /* equivalent to 16px */
   line-height: 112.5%;
@@ -250,7 +254,7 @@ const Layout = ({ containerOptions, children }) => (
           </Link>
         </li>
         <li>
-          <Link to="/blog" activeClassName="active">
+          <Link to="/blog" activeClassName="active" partiallyActive>
             Blog
           </Link>
         </li>

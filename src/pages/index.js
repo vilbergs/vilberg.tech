@@ -165,10 +165,12 @@ const navSocialMedia = css`
 const bio = css`
   z-index: 15;
   padding: 30px;
+  margin-top: 50px;
 
-  p {
-    line-height: 1.7;
-    font-size: 112, 5%;
+  h2 {
+    line-height: 1.5;
+    color: hsla(0, 0%, 0%, 0.6);
+    font-weight: 900;
   }
 
   ${phone} {
@@ -359,17 +361,10 @@ const IndexPage = () => {
         <GitHub color="#7a614c" />
       </div>
       <div css={bio}>
-        <p>
-          Welcome to my site, a platform where I showcase photos from my
-          adventures and share my thoughts on the various subjects that cross my
-          mind.
-        </p>
-        <p>
-          I am born and raised in Iceland but currently live in Sweden where I
-          work fulltime as a developer. I've always wanted a space where I can
-          reflect on and solidify my half-baked ideas about everything from tech
-          to philosophy.
-        </p>
+        <SubHeading>Hi!</SubHeading>
+        <SubHeading>
+          I built this site to showcase my stuff and brag about it!
+        </SubHeading>
       </div>
 
       <Heading css={recentPostsHeading}>Recent posts</Heading>

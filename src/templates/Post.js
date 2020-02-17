@@ -22,6 +22,7 @@ const body = css`
 
   p {
     color: rgb(34, 36, 38);
+    line-height: 1.7;
   }
 
   h2,
