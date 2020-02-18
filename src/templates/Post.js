@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Heading from '../components/Heading'
 import SplitScreen from '../components/SplitScreen'
+import { format } from 'date-fns'
 
 const splitscreen = css`
   grid-column: 3 / 11;
@@ -57,6 +58,13 @@ const Template = ({ data }) => {
         <SplitScreen css={splitscreen} fluid={featuredImage} />
         <div css={postContainer}>
           <Heading>{post.frontmatter.title}</Heading>
+          <p
+            css={css`
+              font-style: italic;
+            `}
+          >
+            {format(new Date(post.frontmatter.date), 'MMMM do y')}
+          </p>
           <content dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
       </div>
@@ -72,6 +80,7 @@ export const postQuery = graphql`
       frontmatter {
         path
         title
+        date
         featuredImage {
           childImageSharp {
             fluid(maxWidth: 1080) {
