@@ -95,7 +95,7 @@ const Portfolio = () => {
     data.portfolio.edges.length
 
   return (
-    <Layout>
+    <Layout title="Portfolio">
       <div css={body}>
         {data.portfolio.edges.map((image, index) => (
           <BackgroundImage

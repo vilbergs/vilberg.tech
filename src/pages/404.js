@@ -1,13 +1,21 @@
-import React from 'react'
-
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import Layout from '../components/Layout'
-import SEO from '../components/Seo'
+
+const body = css`
+  grid-column: 4 / 10;
+
+  @media (max-width: 43.75em) {
+    grid-column: 2 / 12;
+  }
+`
 
 const NotFoundPage = () => (
-  <Layout>
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+  <Layout title="404: Not found">
+    <main css={body}>
+      <h1>NOT FOUND</h1>
+      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    </main>
   </Layout>
 )
 

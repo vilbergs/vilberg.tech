@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import { useStaticQuery, graphql } from 'gatsby'
-import { Helmet } from 'react-helmet'
 import Layout, {
   phone,
   tabletPortrait,
@@ -169,7 +168,7 @@ const bio = css`
 
   h2 {
     line-height: 1.5;
-    color: hsla(0, 0%, 0%, 0.6);
+    color: hsla(0, 0%, 0%, 0.7);
     font-weight: 900;
   }
 
@@ -335,15 +334,12 @@ const IndexPage = () => {
 
   return (
     <Layout
+      title="Home"
       containerOptions={{
         gridTemplateRows: 'auto 100px 350px auto 1fr auto 100px',
         mobileGridTemplateRows: 'auto 100px 350px auto auto auto auto auto',
       }}
     >
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Home</title>
-      </Helmet>
       <Background css={hero} fluid={data.clouds.childImageSharp.fluid} />
       <SplitScreen
         css={splitscreen}

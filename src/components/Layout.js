@@ -4,6 +4,7 @@ import 'normalize.css'
 import Link from '../components/Link'
 import 'typeface-roboto'
 import 'typeface-scope-one'
+import SEO from '../components/Seo'
 import { LinkedIn, Instagram, GitHub } from '../components/Social'
 
 const breakpoints = [600, 900, 1200]
@@ -244,8 +245,9 @@ const footer = css`
   }
 `
 
-const Layout = ({ containerOptions, children }) => (
+const Layout = ({ containerOptions, children, title }) => (
   <div css={[container(containerOptions), typography]}>
+    <SEO title={title} />
     <div css={[typography, navigation]}>
       <ul>
         <li>

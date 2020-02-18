@@ -3,7 +3,6 @@ import { css, jsx } from '@emotion/core'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Heading from '../components/Heading'
-import SEO from '../components/Seo'
 import Card from '../components/Card'
 import Link from '../components/Link'
 
@@ -33,8 +32,7 @@ const Blog = ({ data }) => {
   const posts = data.allMarkdownRemark.edges.map(({ node }) => node)
 
   return (
-    <Layout>
-      <SEO title="Blog" />
+    <Layout title="Blog">
       <main css={body}>
         {posts.map(({ frontmatter, id, excerpt }) => (
           <div key={id} css={blogListItem}>
