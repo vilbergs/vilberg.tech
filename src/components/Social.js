@@ -17,11 +17,7 @@ const base = color => css`
 `
 
 export const Facebook = ({ color = baseColor, url = `${config.facebook}` }) => (
-  <a
-    href={url}
-    css={base(color)}
-    aria-label="Visit The Shark Fin Games Facebook Page"
-  >
+  <a href={url} css={base(color)} aria-label="Visit Vilberg's Facebook page">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -41,11 +37,7 @@ export const Instagram = ({
   color = baseColor,
   url = `${config.instagram}`,
 }) => (
-  <a
-    href={url}
-    css={base(color)}
-    aria-label="Visit The Shark Fin Games Instagram Page"
-  >
+  <a href={url} css={base(color)} aria-label="Visit Vilberg's Instagram page">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -62,11 +54,7 @@ export const Instagram = ({
 )
 
 export const Twitter = ({ color = baseColor, url = `${config.twitter}` }) => (
-  <a
-    href={url}
-    css={base(color)}
-    aria-label="Visit The Shark Fin Games Twitter Page"
-  >
+  <a href={url} css={base(color)} aria-label="Visit Vilberg's Twitter page">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -83,11 +71,7 @@ export const Twitter = ({ color = baseColor, url = `${config.twitter}` }) => (
 )
 
 export const LinkedIn = ({ color = baseColor, url = `${config.linkedin}` }) => (
-  <a
-    href={url}
-    css={base(color)}
-    aria-label="Visit The Shark Fin Games Twitter Page"
-  >
+  <a href={url} css={base(color)} aria-label="Visit Vilberg's LinkedIn page">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -104,11 +88,7 @@ export const LinkedIn = ({ color = baseColor, url = `${config.linkedin}` }) => (
 )
 
 export const GitHub = ({ color = baseColor, url = `${config.github}` }) => (
-  <a
-    href={url}
-    css={base(color)}
-    aria-label="Visit The Shark Fin Games Twitter Page"
-  >
+  <a href={url} css={base(color)} aria-label="Visit Vilberg's GitHub page">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
