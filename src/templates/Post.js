@@ -23,16 +23,25 @@ const body = css`
   max-width: 800px;
 
   margin: 0 auto;
-  p {
+  p,
+  ul {
     color: rgb(34, 36, 38);
+  }
+
+  p {
     line-height: 1.7;
   }
 
+  li {
+    padding-bottom: 5px;
+  }
+
   h2,
-  h3 {
+  h3,
+  h4 {
     color: hsla(0, 0%, 0%, 0.775);
     margin-top: 3.1rem;
-    margin-bottom: 1.55rem;
+    margin-bottom: 15px;
   }
 
   @media (max-width: 43.75em) {
@@ -50,6 +59,7 @@ const Template = ({ data }) => {
 
   return (
     <Layout
+      title={post.frontmatter.title}
       css={css`
         grid-template-rows: auto;
       `}

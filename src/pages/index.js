@@ -309,7 +309,7 @@ const IndexPage = () => {
       }
       recentPosts: allMarkdownRemark(
         limit: 3
-        sort: { order: ASC, fields: frontmatter___date }
+        sort: { order: DESC, fields: frontmatter___date }
       ) {
         edges {
           node {
