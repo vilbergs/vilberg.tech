@@ -24,7 +24,8 @@ const body = css`
 
   margin: 0 auto;
   p,
-  ul {
+  ul,
+  ol {
     color: rgb(34, 36, 38);
   }
 

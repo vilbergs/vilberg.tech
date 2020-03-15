@@ -29,7 +29,7 @@ perhaps even the kitchen fridge!
 
 Software architects often like to use layers to sort the different responsibilities of a program into distinct,
 easy-to-reason-about chunks that can be stacked to form a hierarchy. I will attempt to do the same thing with what I believe
-to be the chunks that a front end should consist of, so that an organisation can maintain the same level of flexibility and productivity
+to be the chunks that a front end should consist of, so that we can maintain the same level of flexibility and productivity
 across all the types of gadgets and gizmos that exist out there.
 
 _**Quick disclaimer:** Perhaps these concepts can be sorted into something more pragmatic than layers,
@@ -43,13 +43,15 @@ _An illustration of the Front End Layers_
 As front-end developers, UI and UX designers we are responsible for the visual representation and interaction of our products.
 What we present to our users should always be the number one concern of any front-end unit. Building a design system early
 and sticking to it as if it was the holy book is imperative to succeed in scaling your products.
-The implications of what a design system is may vary but I these are the assertions I believe we should make about them.
+The implications of what a design system is may vary but these are the assertions that I believe we should make about them.
 
-- The core of a design system should be reusable across products. A company's products don't have to look the same,
-  but they should feel the same.
-- Component libraries should exist that strictly follow the rules of the design system.
-- A component library should not consume data from directly.
-- A design system's documentation should be available to the public.
+1. The core of a design system should be reusable across products. A company's products don't have to look the same,
+   but they should feel the same.
+2. Component libraries should exist that strictly follow the rules of the design system.
+3. A component library should not consume remote data directly.
+4. A design system's documentation should be available to the public.
+
+**Note:** Point 3 makes the layer approach a bit awkward, but I hope we can agree on the general philosophy.
 
 #### Data aggregate
 

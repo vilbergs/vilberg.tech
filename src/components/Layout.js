@@ -41,6 +41,7 @@ const typography = css`
   }
 
   ul,
+  ol,
   h3,
   h4,
   h5,
