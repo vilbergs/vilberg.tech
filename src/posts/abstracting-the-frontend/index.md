@@ -7,10 +7,12 @@ featuredImage: './cover.jpg'
 
 We so rarely talk about the front end in abstract terms. It's all _"how to x in React"_ or _"Scaling apps in my favourite framework"._
 
-I want to take a moment and share my thoughts on what we will need to be able to do in order to maintain our front ends on a higher level,
+I want to take a moment and share my thoughts on how we should split up our front-end concerns on a higher level,
 agnostic of any framework or technology, place or time.
 
-### What is the Front End?
+### The Front End
+
+What is the front end?
 
 It is my opinion that today's front-end developer should harness the skill to provide a user with a visual interface
 to interact with the product one is working on. Be it a web application, a mobile app, a car's dashboard or a fridge.
@@ -33,7 +35,8 @@ across all the types of gadgets and gizmos that exist out there.
 _**Quick disclaimer:** Perhaps these concepts can be sorted into something more pragmatic than layers,
 the important part is the separation of concerns._
 
--- ILLUSTRATION --
+![Front End Layers](./diagram.png)
+_An illustration of the Front End Layers_
 
 #### Design system
 
@@ -43,12 +46,17 @@ and sticking to it as if it was the holy book is imperative to succeed in scalin
 The implications of what a design system is may vary but I these are the assertions I believe we should make about them.
 
 - The core of a design system should be reusable across products. A company's products don't have to look the same,
-but they should feel the same.
+  but they should feel the same.
 - Component libraries should exist that strictly follow the rules of the design system.
 - A component library should not consume data from directly.
 - A design system's documentation should be available to the public.
 
 #### Data aggregate
+
+If we ever assumed that the backend team is only concerned delivering data to our front ends, this is no longer the case.
+Backend developers building API's have their own group of stakeholders to worry about, the integrators. This means that there will be
+certain trade-offs in API, design. Thus, having a middleware where we can create new datasets tailored
+to the front end can prove very useful.
 
 A front end that does not communicate with a data source is a rare sight these days and I believe that the number of data points a
 single client side application will have to interact with will only grow. A single resource in our front end might consist of
@@ -65,8 +73,9 @@ There are people out there far smarter than me that will deep dive into what mak
 
 ### Practical examples
 
-While this post is meant to provide a higher level overview of the types of lines we should be drawing in our front-end architecture,
-I would like to shed a light on some concrete options that I would see myself reaching for to follow this pattern.
+Contrary to my introductory statement, that this post is meant to provide a higher level overview of the types of lines we should be
+drawing in our front-end architecture,I would like to shed a light on some concrete options that I would see myself reaching for to
+follow this pattern.
 
 #### Storybook
 
@@ -83,7 +92,7 @@ concerns of the front end.
 
 As of right now I don't know about any other option that provides the option of aggregating data and providing a more specified interface
 for front ends, other than rolling your own of course. [Apollo](https://www.apollographql.com/) seems like a natural choice to me but
-I won't be surprised if more and more services like these will start popping up.
+I wouldn't be surprised if there are more of them, and I find it highly likely that these types of services will be all the more common.
 
 #### Whatever (Probably React)
 
@@ -91,13 +100,21 @@ There are just too many libraries and frameworks out there that all aim to suit 
 the scope of this post to cover. It is always important to analyse what needs you or your organisation has before settling on a technology,
 not to mention the developer culture and experience.
 
-#### Review
+### Orchestration
+
+Spreading these responsibilities into their own compartments might seem like it creates too much complexity.
+But we have to remember that complex does not have to mean complicated. Utilizing container technology,
+packing these concerbs into a single deliverable can prove relatively simple. Of course, everything is always a trade off;
+and we should only introduce the amount of complexity we believe we need to provide our users with great software.
+
+### Review
 
 Being a front-end developer in this day and age is an ever more complex role than it may have been perceived as just a few years ago.
 The Front End is more or less everywhere in some shape making it ever more important to create these firm foundations so that we can
 limit uncertaintywithin teams and among stakeholders.With that said it is likely that I will dive deeper into each of these layers
 in future posts.
 
-Now these are just my reflections on the subject. I would love to hear your thoughts too, so feel free to get in touch!
+Now these are just my reflections on the subject. These concepts undoubtedly seem rather basic.
+But perhaps that is why they are not as commonly discussed them on the level of detail that they deserve.
 
 Thanks for taking the time to read this. I deeply appreciate it!
