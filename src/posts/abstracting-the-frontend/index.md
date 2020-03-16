@@ -55,7 +55,7 @@ The implications of what a design system is may vary but these are the assertion
 
 #### Data aggregate
 
-If we ever assumed that the backend team is only concerned delivering data to our front ends, this is no longer the case.
+If we ever assumed that the backend team is only concerned with delivering data to our front ends, this is no longer the case.
 Backend developers building API's have their own group of stakeholders to worry about, integrators. This means that there will be
 certain compromises in API design. Thus, having a middleware where we can create new datasets tailored
 to the front end can prove quite useful.
