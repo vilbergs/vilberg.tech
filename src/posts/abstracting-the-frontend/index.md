@@ -42,7 +42,7 @@ _An illustration of the Front End Layers_
 
 As front-end developers, UI and UX designers we are responsible for the visual representation and interaction of our products.
 What we present to our users should always be the number one concern of any front-end unit. Building a design system early
-and sticking to it as if it was the holy book is imperative to succeed in scaling your products.
+and sticking to it as if it was holy law is imperative to succeed in scaling your products.
 The implications of what a design system is may vary but these are the assertions that I believe we should make about them.
 
 1. The core of a design system should be reusable across products. A company's products don't have to look the same,
@@ -56,9 +56,9 @@ The implications of what a design system is may vary but these are the assertion
 #### Data aggregate
 
 If we ever assumed that the backend team is only concerned delivering data to our front ends, this is no longer the case.
-Backend developers building API's have their own group of stakeholders to worry about, the integrators. This means that there will be
-certain trade-offs in API design. Thus, having a middleware where we can create new datasets tailored
-to the front end can prove very useful.
+Backend developers building API's have their own group of stakeholders to worry about, integrators. This means that there will be
+certain compromises in API design. Thus, having a middleware where we can create new datasets tailored
+to the front end can prove quite useful.
 
 A front end that does not communicate with a data source is a rare sight these days and I believe that the number of data points a
 single client side application will have to interact with will only grow. A single resource in our front end might consist of
@@ -70,13 +70,15 @@ data our front ends interact with so that we can simplify what our client will c
 This one might not come as a big surprise. This is the layer that separates a fridge from a smart watch.
 But provided that we have the above layers, maintaining our applications should now be a less daunting task.
 I had thought about splitting this up into a logic and view layer, but being a firm believer in colocation I feel that
-sharing logic between application is not something that needs to be asserted in order to succeed.
+sharing logic between applications is not something that needs to be asserted in order to succeed.
 There are people out there far smarter than me that will deep dive into what makes a scalable front-end application.
+
+Check out Kent C. Dodds' post on [Colocation](https://kentcdodds.com/blog/colocation) if you're interested in learning more about the principle.
 
 ### Practical examples
 
 Contrary to my introductory statement, that this post is meant to provide a higher level overview of the types of lines we should be
-drawing in our front-end architecture,I would like to shed a light on some concrete options that I would see myself reaching for to
+drawing in our front-end architecture, I would like to shed a light on some concrete options that I would see myself reaching for to
 follow this pattern.
 
 #### Storybook
@@ -105,8 +107,8 @@ not to mention the developer culture and experience.
 ### Orchestration
 
 Spreading these responsibilities into their own compartments might seem like it creates too much complexity.
-But we have to remember that complex does not have to mean complicated. Utilizing container technology,
-packing these concerbs into a single deliverable can prove relatively simple. Of course, everything is always a trade off;
+But we have to remember that complex does not have to mean complicated. Utilizing container technology and tools like [Lerna](https://lerna.js.org/),
+packing these concepts into a single deliverable can prove relatively simple. Of course, everything is always a trade off;
 and we should only introduce the amount of complexity we believe we need to provide our users with great software.
 
 ### Review
@@ -117,6 +119,6 @@ limit uncertaintywithin teams and among stakeholders.With that said it is likely
 in future posts.
 
 Now these are just my reflections on the subject. These concepts undoubtedly seem rather basic.
-But perhaps that is why they are not as commonly discussed them on the level of detail that they deserve.
+But perhaps that is why they are not as commonly discussed on the level of detail that they deserve.
 
-Thanks for taking the time to read this. I deeply appreciate it!
+Thanks for taking the time to read this. If you have thoughts on the subject don't hesitate to get in touch. Happy architecting!
