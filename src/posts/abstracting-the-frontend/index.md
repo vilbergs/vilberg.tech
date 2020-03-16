@@ -57,12 +57,12 @@ The implications of what a design system is may vary but these are the assertion
 
 If we ever assumed that the backend team is only concerned delivering data to our front ends, this is no longer the case.
 Backend developers building API's have their own group of stakeholders to worry about, the integrators. This means that there will be
-certain trade-offs in API, design. Thus, having a middleware where we can create new datasets tailored
+certain trade-offs in API design. Thus, having a middleware where we can create new datasets tailored
 to the front end can prove very useful.
 
 A front end that does not communicate with a data source is a rare sight these days and I believe that the number of data points a
 single client side application will have to interact with will only grow. A single resource in our front end might consist of
-multiple different sources of data, so in order to reduce complexity in our interfaces, we will want to host an aggregate of the
+multiple different sources of data, so in order to reduce complexity in our application code, we will want to host an aggregate of the
 data our front ends interact with so that we can simplify what our client will consume.
 
 #### The application
