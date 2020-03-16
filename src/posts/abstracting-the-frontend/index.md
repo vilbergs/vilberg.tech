@@ -7,8 +7,8 @@ featuredImage: './cover.jpg'
 
 We so rarely talk about the front end in abstract terms. It's all _"how to x in React"_ or _"Scaling apps in my favourite framework"._
 
-I want to take a moment and share my thoughts on how we should split up our front-end concerns on a higher level,
-agnostic of any framework or technology, place or time.
+Let's take a moment and talk about how we could split up our front-end concerns on a higher level,
+agnostic of any framework or technology, so that we can avoid distractions when dealing with the aforementioned challenges
 
 ### The Front End
 
