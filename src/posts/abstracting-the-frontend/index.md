@@ -15,7 +15,7 @@ agnostic of any framework or technology, so that we can avoid distractions when 
 What is the front end?
 
 It is my opinion that today's front-end developer should harness the skill to provide a user with a visual interface
-to interact with the product one is working on. Be it a web application, a mobile app, a car's dashboard or a fridge.
+to interact with the product one is working on. Be it a web application, a mobile app, a car's dashboard or a kitchen fridge.
 This is inherently the job of the front-end developer.
 
 We can safely assume that the front end can appear in many forms, sizes and places, and all these require their own unique
@@ -23,7 +23,7 @@ behaviour in order to fulfill the needs of our users.
 
 As an organisation grows, it is almost certain that the product it provides will need to be presented in more than one of these
 types of platforms. For example, a media streaming service will effectively want to be present in all of them,
-perhaps even the kitchen fridge!
+perhaps even the fridge!
 
 ### Separation of concerns
 
