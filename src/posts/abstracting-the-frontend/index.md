@@ -7,21 +7,20 @@ featuredImage: './cover.jpg'
 
 We so rarely talk about the front end in abstract terms. It's all _"how to x in React"_ or _"Scaling apps in my favourite framework"._
 
-Let's take a moment and talk about how we could split up our front-end concerns on a higher level,
-agnostic of any framework or technology, so that we can avoid distractions when dealing with the aforementioned challenges.
+Let's take a moment and talk about how we could split up our front-end concerns on a higher level, agnostic of any framework or technology, so that we can avoid distractions when working on complex client applications.
 
 ### The Front End
 
 What is the front end?
 
-It is my opinion that today's front-end developer should harness the skill to provide a user with a visual interface
-to interact with the product one is working on. Be it a web application, a mobile app, a car's dashboard or a kitchen fridge.
-This is inherently the job of the front-end developer.
+If we as front-end developers are responsible for providing a person with the means (the application)
+to interact with a device, it would then be safe to assume that the front end is a product of that process.
+Be it a web application, a mobile app, a car's dashboard or a kitchen fridge. This is inherently the job of the front-end developer.
 
-We can safely assume that the front end can appear in many forms, sizes and places, and all these require their own unique
+So we can safely assume that the front end can appear in many forms, sizes and places, and all these require their own unique
 behaviour in order to fulfill the needs of our users.
 
-As an organisation grows, it is almost certain that the product it provides will need to be presented in more than one of these
+As a team or an organisation grows, it is almost certain that the product it provides will need to be presented in more than one of these
 types of platforms. For example, a media streaming service will effectively want to be present in all of them,
 perhaps even the fridge!
 
@@ -92,11 +91,9 @@ In terms of the actual design system, this does not rely on a product or a techn
 I'm a big fan of [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) as I think cleverly segments all the different
 concerns of the front end.
 
-#### Apollo
+#### Apollo / Hasura
 
-As of right now I don't know about any other option that provides the option of aggregating data and providing a more specified interface
-for front ends, other than rolling your own of course. [Apollo](https://www.apollographql.com/) seems like a natural choice to me but
-I wouldn't be surprised if there are more of them, and I find it highly likely that these types of services will be all the more common.
+[Apollo](https://www.apollographql.com/) is the only service that I have experience with to solve this use case. [Hasura](https://hasura.io/) Is a similar in the way that it also aggregates multiple data sources to a single GraphQL API. I wouldn't be surprised if there are more of these types of services out there, and I find it highly likely that more of them will be joining the race.
 
 #### Whatever (Probably React)
 
