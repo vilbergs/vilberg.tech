@@ -44,7 +44,7 @@ them.
 
 As front-end developers, UI and UX designers we are responsible for the visual representation and interaction of our products.
 What we present to our users should always be the number one concern of any front-end unit. Building a design system early
-and sticking to it as if it was holy law is imperative to succeed in scaling your products.
+and sticking to it as if it was holy law is imperative to succeed in scaling our products.
 The implications of what a design system is may vary but these are the assertions that I believe we should make about them.
 
 1. The core of a design system should be reusable across products. A company's products don't have to look the same,
