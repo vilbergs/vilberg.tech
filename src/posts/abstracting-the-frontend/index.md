@@ -26,20 +26,21 @@ perhaps even the fridge!
 
 ### Separation of concerns
 
-Software architects often like to use layers to sort the different responsibilities of a program into distinct,
+Software architects often like to use layers (or tiers) to sort the different responsibilities and dependencies of a program into distinct,
 easy-to-reason-about chunks that can be stacked to form a hierarchy. I will attempt to do the same thing with what I believe
 to be the chunks that a front end should consist of, so that we can maintain the same level of flexibility and productivity
 across all the types of gadgets and gizmos that exist out there.
 
-_**Quick disclaimer:** Perhaps these concepts can be sorted into something more pragmatic than layers,
-the important part is the separation of concerns._
-
-![Front End Layers](./diagram.png)
+![Front End Layers](./new-diagram.png)
 _An illustration of the Front End Layers_
 
 #### Design system
 
-Whether 
+Looking at the illustration above, it quickly bears a resemblance to a [three-tier architecture](https://en.wikipedia.org/wiki/Multitier_architecture).
+In many ways, my approach here does create similar segmentations, the main difference being the design system. This is what creates the fundamental
+difference in how we need to approach front-end architecture. Because we're attempting to create a succinct experience for people with all kinds of
+technical backgrounds or variations that cause them to approach our applications differently, we are have to stay consistent in the way that we present
+them.
 
 As front-end developers, UI and UX designers we are responsible for the visual representation and interaction of our products.
 What we present to our users should always be the number one concern of any front-end unit. Building a design system early
