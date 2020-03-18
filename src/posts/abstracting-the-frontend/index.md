@@ -96,7 +96,7 @@ concerns of the front end.
 
 #### Apollo / Hasura
 
-[Apollo](https://www.apollographql.com/) is the only service that I have experience with to solve this use case. [Hasura](https://hasura.io/) Is a similar in the way that it also aggregates multiple data sources to a single GraphQL API. I wouldn't be surprised if there are more of these types of services out there, and I find it highly likely that more of them will be joining the race.
+[Apollo](https://www.apollographql.com/) is the only service that I have experience with to solve this use case. [Hasura](https://hasura.io/) Is a similar service in the way that it also aggregates multiple data sources to a single GraphQL API. I wouldn't be surprised if there are more of these types of services out there, and I find it highly likely that more of them will be joining the race.
 
 #### Whatever (Probably React)
 
