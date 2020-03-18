@@ -39,7 +39,7 @@ _An illustration of the Front End Layers_
 Looking at the illustration above, it quickly bears a resemblance to a [three-tier architecture](https://en.wikipedia.org/wiki/Multitier_architecture).
 In many ways, my approach here does create similar segmentations, the main difference being the design system. This is what creates the fundamental
 difference in how we need to approach front-end architecture. Because we're attempting to create a succinct experience for people with all kinds of
-technical backgrounds or variations that cause them to approach our applications differently, we are have to stay consistent in the way that we present
+technical backgrounds or variations that cause them to use our applications differently, we are have to stay consistent in the way that we present
 them.
 
 As front-end developers, UI and UX designers we are responsible for the visual representation and interaction of our products.
