@@ -39,6 +39,8 @@ _An illustration of the Front End Layers_
 
 #### Design system
 
+Whether 
+
 As front-end developers, UI and UX designers we are responsible for the visual representation and interaction of our products.
 What we present to our users should always be the number one concern of any front-end unit. Building a design system early
 and sticking to it as if it was holy law is imperative to succeed in scaling your products.
@@ -50,7 +52,7 @@ The implications of what a design system is may vary but these are the assertion
 3. A component library should not consume remote data directly.
 4. A design system's documentation should be available to the public.
 
-**Note:** Point 3 makes the layer approach a bit awkward, but I hope we can agree on the general philosophy.
+Brad Frost has become a bit of an evangelist of design systems. I recommend checking out his [blog](https://bradfrost.com/blog/)
 
 #### Data aggregate
 
