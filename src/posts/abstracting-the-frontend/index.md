@@ -3,7 +3,6 @@ path: '/blog/abstracting-the-front-end'
 title: 'Abstracting The Front End'
 date: '2020-03-15'
 featuredImage: './cover.jpg'
-featuredImageAlt: 'An abstract illustration'
 featuredImageCredit: _Photo by [Paweł Czerwiński](https://unsplash.com/photos/tMbQpdguDVQ)_
 ---
 
