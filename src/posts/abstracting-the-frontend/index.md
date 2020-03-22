@@ -23,7 +23,7 @@ Software architects often like to use layers to sort the different responsibilit
 
 I will attempt to do the same thing with what I believe to be the chunks that a front end should consist of, so that we can maintain flexibility and productivity across all the types of gadgets and gizmos that exist out there.
 
-![An illustration of the front-end layers](./new-diagram.png)
+![An illustration of the front-end layers](./diagram.png)
 _An illustration of the front-end layers_
 
 Looking at the illustration above, it quickly bears a resemblance to a [three-tier architecture](https://en.wikipedia.org/wiki/Multitier_architecture). We have our typical data layer and we can assume the application layer handles our logic. Naturally the view layer should follow, where we would define our visual interface. But isn't this the front end? Aren't we already in the view layer? Why do we need more layers?! Well... As our interfaces have grown in interactive capabilities, so have they in complexity. It is therefore reasonable that eventually we are forced to break these larger individual layers into smaller ones so that we can continue developing and _scaling_ our products in a consistent manner.
