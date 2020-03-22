@@ -27,6 +27,7 @@
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
     "react-image-lightbox": "^5.1.1",
+    "react-markdown": "^4.3.1",
     "react-sizeme": "^2.6.12",
     "typeface-bungee-shade": "0.0.71",
     "typeface-roboto": "0.0.75",

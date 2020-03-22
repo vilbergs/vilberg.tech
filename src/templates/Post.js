@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import { graphql } from 'gatsby'
+import Markdown from 'react-markdown'
 import Layout from '../components/Layout'
 import Heading from '../components/Heading'
 import SplitScreen from '../components/SplitScreen'
@@ -23,6 +24,15 @@ const body = css`
   max-width: 800px;
 
   margin: 0 auto;
+
+  a {
+    color: #3f51b5;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   p,
   ul,
   ol {
@@ -35,6 +45,7 @@ const body = css`
 
   li {
     padding-bottom: 5px;
+    line-height: 1.4;
   }
 
   h2,
@@ -46,12 +57,13 @@ const body = css`
   }
 
   @media (max-width: 43.75em) {
-    grid-column: 2 / 12;
+    grid-column: 1 / -1;
+    padding: 0 20px;
   }
 `
 
 const postContainer = css`
-  margin-top: 5rem;
+  margin-top: 3rem;
 `
 
 const Template = ({ data }) => {
@@ -67,6 +79,9 @@ const Template = ({ data }) => {
     >
       <div css={body}>
         <SplitScreen css={splitscreen} fluid={featuredImage} />
+        {post.frontmatter.featuredImageCredit ? (
+          <Markdown>{post.frontmatter.featuredImageCredit}</Markdown>
+        ) : null}
         <div css={postContainer}>
           <Heading>{post.frontmatter.title}</Heading>
           <p
@@ -92,6 +107,7 @@ export const postQuery = graphql`
         path
         title
         date
+        featuredImageCredit
         featuredImage {
           childImageSharp {
             fluid(maxWidth: 1080) {

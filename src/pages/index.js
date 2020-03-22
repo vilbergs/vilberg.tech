@@ -214,7 +214,6 @@ const recentPostsHeading = css`
 const newestPost = css`
   ${phone} {
     grid-column: 2 / 12;
-    grid-row: auto;
   }
 
   ${tabletPortrait} {
@@ -227,8 +226,6 @@ const newestPost = css`
   }
 `
 const firstRecentPost = css`
-  grid-row: 6;
-
   ${phone} {
     grid-column: 2 / 12;
   }
@@ -243,8 +240,6 @@ const firstRecentPost = css`
   }
 `
 const secondRecentPost = css`
-  grid-row: auto;
-
   ${phone} {
     grid-column: 2 / 12;
   }

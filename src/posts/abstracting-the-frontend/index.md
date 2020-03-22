@@ -3,6 +3,8 @@ path: '/blog/abstracting-the-front-end'
 title: 'Abstracting The Front End'
 date: '2020-03-15'
 featuredImage: './cover.jpg'
+featuredImageAlt: 'An abstract illustration'
+featuredImageCredit: _Photo by [Paweł Czerwiński](https://unsplash.com/photos/tMbQpdguDVQ)_
 ---
 
 We so rarely talk about the front end in abstract terms. It's all _"how to x in React"_ or _"Scaling apps in my favourite framework"._ Let's take a moment and talk about how we could split up our front-end concerns on a higher level, agnostic of any framework or technology, so that we can avoid distractions when working on complex client side applications.
