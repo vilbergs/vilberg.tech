@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import { graphql } from 'gatsby'
+import Markdown from 'react-markdown'
 import Layout from '../components/Layout'
 import Heading from '../components/Heading'
 import SplitScreen from '../components/SplitScreen'
@@ -23,25 +24,46 @@ const body = css`
   max-width: 800px;
 
   margin: 0 auto;
-  p {
+
+  a {
+    color: #3f51b5;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  p,
+  ul,
+  ol {
     color: rgb(34, 36, 38);
+  }
+
+  p {
     line-height: 1.7;
   }
 
+  li {
+    padding-bottom: 5px;
+    line-height: 1.4;
+  }
+
   h2,
-  h3 {
+  h3,
+  h4 {
     color: hsla(0, 0%, 0%, 0.775);
     margin-top: 3.1rem;
-    margin-bottom: 1.55rem;
+    margin-bottom: 15px;
   }
 
   @media (max-width: 43.75em) {
-    grid-column: 2 / 12;
+    grid-column: 1 / -1;
+    padding: 0 20px;
   }
 `
 
 const postContainer = css`
-  margin-top: 5rem;
+  margin-top: 3rem;
 `
 
 const Template = ({ data }) => {
@@ -50,12 +72,16 @@ const Template = ({ data }) => {
 
   return (
     <Layout
+      title={post.frontmatter.title}
       css={css`
         grid-template-rows: auto;
       `}
     >
       <div css={body}>
         <SplitScreen css={splitscreen} fluid={featuredImage} />
+        {post.frontmatter.featuredImageCredit ? (
+          <Markdown>{post.frontmatter.featuredImageCredit}</Markdown>
+        ) : null}
         <div css={postContainer}>
           <Heading>{post.frontmatter.title}</Heading>
           <p
@@ -81,6 +107,7 @@ export const postQuery = graphql`
         path
         title
         date
+        featuredImageCredit
         featuredImage {
           childImageSharp {
             fluid(maxWidth: 1080) {

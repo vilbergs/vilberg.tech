@@ -18,7 +18,7 @@ Fast forward, I am sitting in an office building in semi-central Gothenburg, Swe
 this premiere blog post to kick off my website. And while the contents of future posts are likely to
 be a bit more more specific I would like to seize the opportunity to provide a little context.
 
-Around the time of not winning this renown music competition I was planning a trip through Central Europe. 
+Around the time of not winning this renown music competition I was planning a trip through Central Europe.
 My job was rather uninspiring and the apartment I was renting had just been sold.
 I wanted so badly to get inspired by something, somewhere; I wanted to, wait for it...
 _"find myself..."_.

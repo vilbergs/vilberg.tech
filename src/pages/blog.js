@@ -10,7 +10,8 @@ const body = css`
   grid-column: 4 / 10;
 
   @media (max-width: 43.75em) {
-    grid-column: 2 / 12;
+    grid-column: 1 / -1;
+    padding: 0 20px;
   }
 `
 
@@ -65,7 +66,7 @@ export const recentPostsQuery = graphql`
   query RecentBlogPosts {
     allMarkdownRemark(
       limit: 5
-      sort: { order: ASC, fields: frontmatter___date }
+      sort: { order: DESC, fields: frontmatter___date }
     ) {
       edges {
         node {
