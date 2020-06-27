@@ -262,8 +262,8 @@ const Layout = ({ containerOptions, children, title }) => (
           </Link>
         </li>
         <li>
-          <Link to="/portfolio" activeClassName="active">
-            Portfolio
+          <Link to="/photography" activeClassName="active">
+            Photography
           </Link>
         </li>
       </ul>
