@@ -1,21 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import 'normalize.css'
-import Link from '../components/Link'
 import 'typeface-roboto'
 import 'typeface-scope-one'
+import { phone, tabletPortrait, desktop } from '../utils/breakpoints'
 import SEO from '../components/Seo'
 import { LinkedIn, Instagram, GitHub } from '../components/Social'
 import MobileMenu from './MobileMenu'
 import Menu from './Menu'
-
-const breakpoints = [600, 900, 1200]
-
-export const phone = `@media (max-width: ${599}px)`
-
-export const [tabletPortrait, tabletLandscape, desktop] = breakpoints.map(
-  bp => `@media (min-width: ${bp}px)`
-)
 
 const typography = css`
   body {

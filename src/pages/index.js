@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import { useStaticQuery, graphql } from 'gatsby'
-import Layout, {
+import {
   phone,
   tabletPortrait,
   tabletLandscape,
   desktop,
-} from '../components/Layout'
+} from '../utils/breakpoints'
+import Layout from '../components/Layout'
 import Background from '../components/Background'
 import Heading from '../components/Heading'
 import SplitScreen from '../components/SplitScreen'

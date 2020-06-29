@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core'
 import { Link } from 'gatsby'
 import { LinkedIn, Instagram, GitHub } from './Social'
-import { tabletPortrait, phone } from './Layout'
+import { tabletPortrait, phone } from '../utils/breakpoints'
 import { useState } from 'react'
 
 const navigation = css`
