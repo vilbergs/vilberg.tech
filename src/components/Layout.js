@@ -1,19 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import 'normalize.css'
-import Link from '../components/Link'
 import 'typeface-roboto'
 import 'typeface-scope-one'
+import { phone, tabletPortrait, desktop } from '../utils/breakpoints'
 import SEO from '../components/Seo'
 import { LinkedIn, Instagram, GitHub } from '../components/Social'
-
-const breakpoints = [600, 900, 1200]
-
-export const phone = `@media (max-width: ${599}px)`
-
-export const [tabletPortrait, tabletLandscape, desktop] = breakpoints.map(
-  bp => `@media (min-width: ${bp}px)`
-)
+import MobileMenu from './MobileMenu'
+import Menu from './Menu'
 
 const typography = css`
   body {
@@ -162,66 +156,14 @@ const container = (
     grid-template-rows: ${options.mobileGridTemplateRows};
   }
 `
-
-const navigation = css`
-  grid-column: 2 / 12;
-  grid-row: 1;
-  z-index: 16;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  height: 100px;
-
-  ${tabletPortrait} {
-    grid-column: 2 / 12;
-  }
-
-  h2 {
-    margin: 0;
-  }
-
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-
-    ${phone} {
-      margin: 0 auto;
-    }
-
-    li {
-      display: inline;
-      padding: 0 15px;
-      color: rgb(0, 0, 0, 0.87);
-      font-size: 1.5em;
-      font-weight: 500;
-      text-align: center;
-
-      &:first-of-type {
-        border-left: none;
-      }
-
-      .active {
-        border-bottom: 3px solid #7a614c;
-      }
-
-      a {
-        font-family: Scope One;
-        text-decoration: none;
-
-        color: inherit;
-
-        ${phone} {
-          text-align: center;
-        }
-      }
-    }
+const nav = css`
+  ${phone} {
+    display: none;
   }
 `
 
-const navSocialMedia = css`
-  ${phone} {
+const mobileNav = css`
+  ${tabletPortrait} {
     display: none;
   }
 `
@@ -249,31 +191,9 @@ const footer = css`
 const Layout = ({ containerOptions, children, title }) => (
   <div css={[container(containerOptions), typography]}>
     <SEO title={title} />
-    <div css={[typography, navigation]}>
-      <ul>
-        <li>
-          <Link to="/" activeClassName="active">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/blog" activeClassName="active" partiallyActive>
-            Blog
-          </Link>
-        </li>
-        <li>
-          <Link to="/photography" activeClassName="active">
-            Photography
-          </Link>
-        </li>
-      </ul>
-      <div css={navSocialMedia}>
-        <LinkedIn />
-        <Instagram />
-        <GitHub />
-      </div>
-    </div>
 
+    <Menu css={nav} />
+    <MobileMenu css={mobileNav} />
     {children}
     <footer css={footer}>
       <div>

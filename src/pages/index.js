@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import { useStaticQuery, graphql } from 'gatsby'
-import Layout, {
+import {
   phone,
   tabletPortrait,
   tabletLandscape,
   desktop,
-} from '../components/Layout'
+} from '../utils/breakpoints'
+import Layout from '../components/Layout'
 import Background from '../components/Background'
 import Heading from '../components/Heading'
 import SplitScreen from '../components/SplitScreen'
@@ -19,6 +20,9 @@ const hero = css`
   grid-column: 1 / -1;
   grid-row: 1;
   height: calc(100vw * (9 / 16));
+  ${phone} {
+    display: none;
+  }
 `
 
 const splitscreen = css`
@@ -32,22 +36,13 @@ const splitscreen = css`
 
   ${phone} {
     grid-column: 1 / -1;
+    margin: 0;
     h1 {
-      font-size: 5em;
-      color: rgba(0, 0, 0, 0.8);
+      display: none;
     }
 
     h2 {
-      margin-bottom: -10px;
-      margin-bottom: 150px;
-
-      &::after {
-        content: '';
-        display: block;
-        padding-bottom: 30px;
-        width: 50%;
-        border-bottom: 10px solid #7a614c;
-      }
+      display: none;
     }
   }
 
