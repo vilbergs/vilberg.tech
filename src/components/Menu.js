@@ -3,7 +3,6 @@ import { css, jsx } from '@emotion/core'
 import { Link } from 'gatsby'
 import { LinkedIn, Instagram, GitHub } from './Social'
 import { tabletPortrait, phone } from '../utils/breakpoints'
-import { useState } from 'react'
 
 const navigation = css`
   grid-column: 2 / 12;
@@ -31,11 +30,22 @@ const navigation = css`
     color: inherit;
   }
 
-  .navigation-heading {
-  }
+  .navigation-menu {
+    a:not(:first-of-type) {
+      margin-left: 30px;
+    }
 
-  .navigation-menu a:not(:first-of-type) {
-    margin-left: 30px;
+    a {
+      transition: 0.3s;
+
+      :hover {
+        color: #7a614c;
+      }
+    }
+
+    .active {
+      border-bottom: 3px solid #7a614c;
+    }
   }
 `
 
@@ -43,12 +53,13 @@ const navSocialMedia = css`
   ${phone} {
     display: none;
   }
+
+  a:last-child {
+    margin: 0;
+  }
 `
 
 const Menu = ({ color = 'black', ...props }) => {
-  const [isToggledOn, setToggle] = useState(false)
-  const toggle = () => setToggle(!isToggledOn)
-
   return (
     <nav css={navigation} {...props}>
       <Link to="/" className="navigation-heading">
